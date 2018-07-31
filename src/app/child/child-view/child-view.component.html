@@ -1,0 +1,11 @@
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+    <img src="{{entity.image}}"/>
+      <h5 class="card-title">{{entity.name()}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{entity.age()}}, {{entity.gender}}</h6>
+      <p class="card-text">Likes - {{entity.interests}}</p>
+      <p class="card-text">{{entity.description}}</p>
+      <a href="#" *ngIf= "entity.parent" class="card-link">{{entity.parent}}</a>
+      <button class="btn-primary" (click)="clicked()" >Be my parent !</button>
+    </div>
+  </div>

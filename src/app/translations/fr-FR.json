@@ -1,0 +1,19 @@
+{
+    //helpchild
+"Child_description": "FR-Description",
+
+"Child_interests": "FR-Interests",
+
+"Child_parent": "FR-Parent",
+
+"Parent_email": "FR-Email",
+
+"Parent_city": "FR-City",
+
+"Parent_country": "FR-Country",
+
+"Parent_bankInfo": "FR-Bank info",
+
+
+
+}

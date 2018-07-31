@@ -1,0 +1,35 @@
+<ngb-accordion [closeOthers]="true" activeIds="t1" #acc="ngbAccordion" (panelChange)="beforeChange($event)">
+    <ngb-panel id="t1"  #t1>
+      <ng-template ngbPanelTitle>
+        <h6  class="border-bottom">
+          Your quote
+          <i class="fas pb-3" [ngClass]=" current == 1 ? 'fa-chevron-down':'fa-chevron-up' "></i>
+        </h6>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        <amt  [entity]="entity" #dw  (stepComplete)="goNext('t1')"></amt>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="t2"  [disabled]="false" #t2 >
+      <ng-template ngbPanelTitle>
+          <h6  class="border-bottom">
+            Your medical conditions
+            <i class="fas pb-3" [ngClass]=" current == 2 ? 'fa-chevron-down':'fa-chevron-up' "></i>
+          </h6>
+        </ng-template>
+      <ng-template ngbPanelContent>
+        <med [entity]="entity" #dw (stepComplete)="goNext('t2')"> </med> 
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="t3"  [disabled]="isDisabled('t3')">
+        <ng-template ngbPanelTitle>
+            <h6  class="border-bottom">
+              Your amt
+              <i class="fas pb-3" [ngClass]=" current == 3 ? 'fa-chevron-down':'fa-chevron-up' "></i>
+            </h6>
+          </ng-template>
+      <ng-template ngbPanelContent>
+        <amt  [entity]="entity" #dw  (stepComplete)="goNext($event)"></amt>
+        </ng-template>
+    </ngb-panel>
+  </ngb-accordion>

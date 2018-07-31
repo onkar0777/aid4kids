@@ -1,0 +1,10 @@
+<div class="card abc-transparent-card">
+  <ul class="list-group list-group-flush">
+      <li class="list-group-item"  [ngClass]= "{'active': currentInd === i, 'complete': currentInd > i, 'disabled': currentInd < i}" 
+         *ngFor="let step of steps; let i = index" >
+        <span class="abc-light-text ml-2">Step {{i+1}} : </span>
+        <span> {{step.name}} </span>
+        <i *ngIf="currentInd > i+1" class="fas fa-check abc-blue-theme-color"></i>
+      </li>
+  </ul>     
+</div>

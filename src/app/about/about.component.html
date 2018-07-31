@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  {{entity|json}}
+  <app-navigator [hidden]="w.done()"  [currentInd]="w.activeIndex" [steps]="steps"></app-navigator>
+  
+  <wizard #w>
+    <wizard-step header="details"> 
+        <app-accwiz [entity]="entity" #dw></app-accwiz>
+    </wizard-step>
+    <wizard-step header="Medical" >
+       <med [entity]="entity" #dw> </med> 
+    </wizard-step>   
+    <wizard-step header="AMount"  > 
+        <amt  [entity]="entity" #dw></amt>
+    </wizard-step>
+  </wizard>
+</div>

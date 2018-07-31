@@ -1,0 +1,20 @@
+{
+  "generator-ngx-rocket": {
+    "version": "5.0.0",
+    "props": {
+      "location": "path",
+      "appName": "myang",
+      "target": [
+        "web"
+      ],
+      "pwa": true,
+      "ui": "bootstrap",
+      "auth": true,
+      "lazy": true,
+      "angulartics": false,
+      "projectName": "myang",
+      "packageManager": "npm",
+      "mobile": []
+    }
+  }
+}
