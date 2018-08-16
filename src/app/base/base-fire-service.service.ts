@@ -56,6 +56,7 @@ export class BaseFireService<T extends BaseEntity> {
   }
 
   getRecords():Observable<T[]>{
+    console.log(this.getCollName());
     return this.afs.colWithIds$(this.getCollName())
   }
 }

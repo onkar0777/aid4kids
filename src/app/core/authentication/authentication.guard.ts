@@ -13,7 +13,6 @@ export class AuthenticationGuard implements CanActivate {
               private authenticationService: AuthenticationService) { }
 
   canActivate(): boolean {
-   // console.log(this.href)
     if(this.router.url === "home")
       return true;
 
