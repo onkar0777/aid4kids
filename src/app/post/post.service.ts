@@ -13,22 +13,25 @@ import { AuthenticationService } from '@app/core';
 import { Post } from '@app/post/post';
 
 @Injectable()
-export class PostService extends BaseFireService<Post>{
-  getUnsponsored(){
-    return  this.afs.colWithIds$(this.getCollName())
+export class PostService extends BaseFireService<Post> {
+
+  getUnsponsored() {
+    return  this.afs.colWithIds$(this.getCollName());
   }
 
-
-  getCollName(){
-    return 'posts'
+  getCollName() {
+    return 'posts';
   }
 
+  getAllChildren() {
+    return this.afs.colWithIds$('childs');
+  }
 
-  entity_url = this.getCollName()
-
-  constructor(public afs:FirestoreService, 
-    protected messages:FlashMessagesService,
-  protected authService:AuthenticationService){
-      super(afs, messages)
+  constructor(
+    public afs: FirestoreService,
+    protected messages: FlashMessagesService,
+    protected authService: AuthenticationService
+) {
+      super(afs, messages);
   }
 }

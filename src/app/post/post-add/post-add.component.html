@@ -39,7 +39,10 @@
                 <label for="children-input">
                     <span translate>children</span>
                 </label>
-                <ng-select [items]="children$ | async" bindLabel="name" bindValue="id">
+                <ng-select formControlName="children" [(ngModel)]="entity.children"
+                    [items]="children$ | async" [multiple]="true" bindValue="id"
+                    bindLabel="firstName" [closeOnSelect]="false"
+                    placeholder="Select Multiple Children">
                 </ng-select>
 
                 <div class="alert alert-danger" *ngIf="postForm.get('children').errors && postForm.get('children').touched">

@@ -27,7 +27,8 @@ export class BaseFireService<T extends BaseEntity> {
     this.url   = this.getCollName();
   }
 
-  getCollName(){
+  getCollName() {
+    console.log('Why is this being called');
     return ''
   }
 

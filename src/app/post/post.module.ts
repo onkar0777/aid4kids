@@ -5,7 +5,7 @@ import { PostListComponent } from './post-list/post-list.component';
 import { PostAddComponent } from './post-add/post-add.component';
 //import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostRoutingModule} from './post-routing.module';
-import { NgSelectModule,NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
+import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
 import { PostViewComponent } from '@app/post/post-view/post-view.component';
@@ -31,7 +31,15 @@ import { PostService } from '@app/post/post.service';
     PostAddComponent,
     PostViewComponent
   ],
-  providers: [PostService]
+  providers: [
+    PostService,
+    {
+      provide: NG_SELECT_DEFAULT_CONFIG,
+      useValue: {
+          notFoundText: 'Custom not found'
+      }
+  }
+  ]
 })
 export class PostModule {
 }

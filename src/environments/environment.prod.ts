@@ -4,12 +4,12 @@ import env from './.env';
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyDD9kMSoJkvMqFulNNUeZk5d0PIaa_x6gc",
-    authDomain: "clientpanelprod-1fc68.firebaseapp.com",
-    databaseURL: "https://clientpanelprod-1fc68.firebaseio.com",
-    projectId: "clientpanelprod-1fc68",
-    storageBucket: "clientpanelprod-1fc68.appspot.com",
-    messagingSenderId: "872425914994"
+    apiKey: "AIzaSyC1lhQgXW-08ttzTrSktVvNTFCA1HVLpw4",
+    authDomain: "aid4kids-ed95a.firebaseapp.com",
+    databaseURL: "https://aid4kids-ed95a.firebaseio.com",
+    projectId: "aid4kids-ed95a",
+    storageBucket: "aid4kids-ed95a.appspot.com",
+    messagingSenderId: "776583101410"
   },
   version: env.npm_package_version,
   serverUrl: 'https://api.chucknorris.io',

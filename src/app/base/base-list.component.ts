@@ -12,7 +12,7 @@ export abstract class BaseListComponent<T extends BaseEntity> implements OnInit 
   $entities: Observable< T[]>;
   errorMessage: string;
   response_status: number;
-  is_insert: boolean = false;
+  is_insert = false;
 
   constructor(protected service: BaseFireService<T>, protected router: Router) {
     //this.$entities = <T[]>[];
@@ -33,6 +33,7 @@ export abstract class BaseListComponent<T extends BaseEntity> implements OnInit 
   // }
 
   showAdd() {
+    console.log('Show add', this.service.url);
     this.router.navigate(['/' + this.service.url + '/add']);
   }
 
