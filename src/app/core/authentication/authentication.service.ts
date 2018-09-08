@@ -50,7 +50,7 @@ export class AuthenticationService {
   // }
 
   user: Observable<firebase.User>;
-  localUser:firebase.User;
+  localUser: firebase.User;
   //items: FirebaseListObservable<any[]>;
 
   constructor(protected afAuth: AngularFireAuth, protected messages:FlashMessagesService) {

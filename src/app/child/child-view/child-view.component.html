@@ -1,5 +1,7 @@
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="{{entity.image}}"/>
+  <ng-container *ngIf="entity.imageUrl | async; let image">
+      <img class="card-img-top" src="{{image}}"/>
+  </ng-container>
   <div class="card-body">
       <h5 class="card-title">{{entity.name()}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{entity.age()}}, {{entity.gender}}</h6>

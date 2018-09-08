@@ -7,13 +7,9 @@ import { Child, Parent} from "../child";
 import { ChildService} from "../child.service";
 import { BaseEditComponent } from '@app/base/base-edit.component';
 import { Observable } from 'rxjs';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 //import {Parent} from "@app/parent/parent";
-
-
-
-
-
 
 @Component({
 selector: 'app-child-add',
@@ -30,14 +26,20 @@ export class ChildAddComponent  extends BaseEditComponent<Child> implements OnIn
     //parent : Parent[]
 
 
-    constructor(protected childService: ChildService, protected route:ActivatedRoute, protected router: Router, private fb: FormBuilder) {
+    constructor(
+        protected childService: ChildService,
+        protected route: ActivatedRoute,
+        protected router: Router,
+        private fb: FormBuilder,
+        public afStorage: AngularFireStorage
+    ) {
         super(childService, route, router, 'childs')
         this.createForm();
     }
 
 
     private createForm(): void {
-        this.childForm= this.fb.group({
+        this.childForm = this.fb.group({
         firstName : ['', [   Validators.required,  ]],
         lastName : ['', [   Validators.required,  ]],
         image : ['', [   Validators.required,  ]],
@@ -49,14 +51,18 @@ export class ChildAddComponent  extends BaseEditComponent<Child> implements OnIn
         });
     }
 
+    upload(event: any) {
+        console.log(event.target.files[0]);
+        this.entity.image = `/child/profile/images/${event.target.files[0]}`;
+        this.afStorage.upload(this.entity.image, event.target.files[0]);
+      }
 
-
-    submit(){
+    submit() {
         Object.keys(this.childForm.controls).forEach(field =>
             this.childForm.get(field).markAsTouched()
         );
         console.log(this.childForm.value)
-        if(!this.entity['parent'])
+        if (!this.entity['parent'])
             this.entity['parent'] = null
         console.log("entity", this.entity)
         super.onSubmit(this.entity);

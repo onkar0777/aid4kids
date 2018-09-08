@@ -6,7 +6,7 @@ import { ChildListComponent } from './child-list/child-list.component';
 import { ChildAddComponent } from './child-add/child-add.component';
 //import { ChildEditComponent } from './child-edit/child-edit.component';
 import { ChildRoutingModule} from './child-routing.module';
-import { NgSelectModule,NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
+import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
 import { ChildViewComponent } from '@app/child/child-view/child-view.component';

@@ -8,6 +8,7 @@ import { BaseEditComponent } from '../../base/base-edit.component';
 import { ChildImpl } from '@app/model/ChildImpl';
 
 import * as _ from 'lodash';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 @Component({
 selector: 'child-view',
@@ -21,22 +22,25 @@ export class ChildViewComponent extends BaseEditComponent<Child> implements OnIn
 
     @Output() parentClicked:EventEmitter<Child> = new EventEmitter()
 
-    constructor(protected childService: ChildService,
-    protected route: ActivatedRoute,
-    protected router: Router) {
-    super(childService, route, router, 'childs')
-
+    constructor(
+        protected childService: ChildService,
+        protected route: ActivatedRoute,
+        protected router: Router,
+        private afStorage: AngularFireStorage
+    ) {
+        super(childService, route, router, 'childs')
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.original = this.entity
         this.entity = new ChildImpl(this.entity);
+        this.entity.imageUrl = this.afStorage.ref(this.entity.image).getDownloadURL();
         console.log(this.entity.age())
     }
 
-    clicked(){
+    clicked() {
         console.log('clicked')
-        let temp:Child = <Child> _.pickBy(this.entity,x => typeof x != 'function');
+        const temp: Child = <Child> _.pickBy(this.entity, x => typeof x !== 'function');
         temp.parent = '55555'
         this.parentClicked.emit(temp)
     }

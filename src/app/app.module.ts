@@ -13,9 +13,10 @@ import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import {AngularFireModule} from 'angularfire2' 
-import {AngularFirestoreModule} from 'angularfire2/firestore'
-import {AngularFireAuthModule} from 'angularfire2/auth'
+import {AngularFireModule} from 'angularfire2';
+import {AngularFirestoreModule} from 'angularfire2/firestore';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { ChildModule } from '@app/child/child.module';
 //import { ParentModule } from '@app/parent/parent.module';
 import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
@@ -42,6 +43,7 @@ import { PostModule } from '@app/post/post.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
     FlashMessagesModule.forRoot()
 
   ],

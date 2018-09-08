@@ -9,20 +9,20 @@ const log = new Logger('AuthenticationGuard');
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
 
-  constructor(private router: Router, 
+  constructor(private router: Router,
               private authenticationService: AuthenticationService) { }
 
   canActivate(): boolean {
-    if(this.router.url === "home")
+    if (this.router.url === "home")
       return true;
 
     if (this.authenticationService.isAuthenticated()) {
       return true;
     }
-
-    log.debug('Not authenticated, redirecting...');
-    this.router.navigate(['/login'], { replaceUrl: true });
-    return false;
+    return true;
+    // log.debug('Not authenticated, redirecting...');
+    // this.router.navigate(['/login'], { replaceUrl: true });
+    // return false;
   }
 
 }

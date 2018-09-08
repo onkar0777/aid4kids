@@ -30,11 +30,7 @@
                 <label for="image-input">
                     <span translate>Image</span>
                 </label>
-                <input type="text" class="form-control" formControlName="image" id="image-input" [(ngModel)]="entity.image">
-                <div class="alert alert-danger" *ngIf="childForm.get('image').errors && childForm.get('image').touched">
-                    <p *ngIf="childForm.get('image').errors.required">Required !</p>
-                </div>
-
+                <input type="file" (change)="upload($event)" accept=".png,.jpg"/>
             </div>
 
 
