@@ -7,7 +7,7 @@ import { Child, Parent} from "../child";
 import { ChildService} from "../child.service";
 import { BaseEditComponent } from '@app/base/base-edit.component';
 import { Observable } from 'rxjs';
-import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 
 //import {Parent} from "@app/parent/parent";
 
@@ -22,6 +22,8 @@ export class ChildAddComponent  extends BaseEditComponent<Child> implements OnIn
     errorMessage: string;
     public childForm: FormGroup;
     parents$: Observable<Parent[]>;
+    imageUploadTask: AngularFireUploadTask;
+    uploadProgress: Observable<number>;
 
     //parent : Parent[]
 
@@ -53,8 +55,11 @@ export class ChildAddComponent  extends BaseEditComponent<Child> implements OnIn
 
     upload(event: any) {
         console.log(event.target.files[0]);
-        this.entity.image = `/child/profile/images/${event.target.files[0]}`;
-        this.afStorage.upload(this.entity.image, event.target.files[0]);
+        if (event.target.files[0]) {
+            this.entity.image = `/child/profile/images/${event.target.files[0]}`;
+            this.imageUploadTask = this.afStorage.upload(this.entity.image, event.target.files[0]);
+            this.uploadProgress = this.imageUploadTask.percentageChanges();
+        }
       }
 
     submit() {

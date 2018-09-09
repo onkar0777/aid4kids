@@ -30,7 +30,8 @@
                 <label for="image-input">
                     <span translate>Image</span>
                 </label>
-                <input type="file" (change)="upload($event)" accept=".png,.jpg"/>
+                <input type="file" class="form-control" formControlName="image" id="image-input" (change)="upload($event)" accept=".png,.jpg"/>
+                <progress max="100" *ngIf="uploadProgress | async; let uploadProgressPercentage" [value]="uploadProgressPercentage"><span>{{uploadProgressPercentage}}%</span></progress>
             </div>
 
 
@@ -81,10 +82,6 @@
 
             </div>
 
-
-
-
-
             <div class="form-group">
                 <label for="interests-input">
                     <span translate>interests</span>
@@ -111,7 +108,7 @@
             </div>
 
 
-            <button type="submit" class="btn btn-primary">
+            <button [disabled]="childForm.invalid || childForm.pristine" type="submit" class="btn btn-primary">
                 <span translate>Submit</span>
             </button>
         </form>

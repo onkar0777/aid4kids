@@ -17,10 +17,10 @@ styleUrls: ['./child-edit.component.css']
 })
 export class ChildViewComponent extends BaseEditComponent<Child> implements OnInit {
     @Input() entity: ChildImpl;
-    original:Child;
+    original: Child;
     errorMessage: string;
 
-    @Output() parentClicked:EventEmitter<Child> = new EventEmitter()
+    @Output() parentClicked: EventEmitter<Child> = new EventEmitter()
 
     constructor(
         protected childService: ChildService,

@@ -10,12 +10,12 @@ export const environment = {
   production: false,
   version: env.npm_package_version + '-dev',
   firebase: {
-    apiKey: "AIzaSyDB7ky02zQGeLWRI43zJkTg3NETmbLzYhI",
-    authDomain: "aid4kids-3342e.firebaseapp.com",
-    databaseURL: "https://aid4kids-3342e.firebaseio.com",
-    projectId: "aid4kids-3342e",
-    storageBucket: "aid4kids-3342e.appspot.com",
-    messagingSenderId: "152281807638"
+    apiKey: "AIzaSyC1lhQgXW-08ttzTrSktVvNTFCA1HVLpw4",
+    authDomain: "aid4kids-ed95a.firebaseapp.com",
+    databaseURL: "https://aid4kids-ed95a.firebaseio.com",
+    projectId: "aid4kids-ed95a",
+    storageBucket: "aid4kids-ed95a.appspot.com",
+    messagingSenderId: "776583101410"
   },
   serverUrl: '/api',
   defaultLanguage: 'en-US',
