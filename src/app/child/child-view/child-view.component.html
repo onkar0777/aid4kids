@@ -1,5 +1,6 @@
 <div class="card" style="width: 18rem;">
   <ng-container *ngIf="entity.imageUrl | async; let image">
+    {{entity.imageUrl | json}}
       <img class="card-img-top" src="{{image}}"/>
   </ng-container>
   <div class="card-body">

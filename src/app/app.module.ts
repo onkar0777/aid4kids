@@ -22,6 +22,7 @@ import { ChildModule } from '@app/child/child.module';
 import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
 import { FirestoreService } from '@app/base/firestore.service';
 import { PostModule } from '@app/post/post.module';
+import { QuoteModule } from '@app/quote/quote.module';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { PostModule } from '@app/post/post.module';
     LoginModule,
     ChildModule,
     PostModule,
+    QuoteModule,
     //ParentModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),

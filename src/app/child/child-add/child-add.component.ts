@@ -5,7 +5,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 import { Child, Parent} from "../child";
 import { ChildService} from "../child.service";
-import { BaseEditComponent } from '@app/base/base-edit.component';
+import { BaseEditComponent } from '@app/base/base-edit.component'; 
+import { guid } from '@app/shared/utils'
+
 import { Observable } from 'rxjs';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 
@@ -54,12 +56,16 @@ export class ChildAddComponent  extends BaseEditComponent<Child> implements OnIn
     }
 
     upload(event: any) {
+        if(!this.entity.id)
+        this.entity.id = guid()
+
         console.log(event.target.files[0]);
         if (event.target.files[0]) {
-            this.entity.image = `/child/profile/images/${event.target.files[0]}`;
+            this.entity.image = `/child/profile/images/${this.entity.id}`;
             this.imageUploadTask = this.afStorage.upload(this.entity.image, event.target.files[0]);
             this.uploadProgress = this.imageUploadTask.percentageChanges();
         }
+        
       }
 
     submit() {

@@ -1,28 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import {ActivatedRoute, Router} from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { BaseEntity } from './base';
 import { BaseService } from './base.service';
 import { BaseFireService } from '@app/base/base-fire-service.service';
 //import { DisplayMessage } from '../shared/models/display-message';
 
 
-export abstract class BaseEditComponent<T extends BaseEntity>   implements OnInit {
+export abstract class BaseEditComponent<T extends BaseEntity> implements OnInit {
 
-  entity:T
+  entity: T
   errorMessage: string;
-  id:any
+  id: any
+
 
   public compareFn(e1: BaseEntity, e2: BaseEntity) {
     return e1 && e2 ? e1.id === e2.id : e1 === e2;
-  } 
+  }
 
-     /**
-   * Boolean used in telling the UI
-   * that the form has been submitted
-   * and is awaiting a response
-   */
+  /**
+* Boolean used in telling the UI
+* that the form has been submitted
+* and is awaiting a response
+*/
   submitted = false;
 
   /**
@@ -30,76 +31,63 @@ export abstract class BaseEditComponent<T extends BaseEntity>   implements OnIni
    * form request or router
    */
   //notification: DisplayMessage;
-  
+
   //@Output() onNew = new EventEmitter<T>();
-  constructor(protected service: BaseFireService<T>, 
+  constructor(protected service: BaseFireService<T>,
     protected route: ActivatedRoute,
-    protected router: Router, 
-      protected url:string) {
-       // super();
-      this.entity = <T>{};
+    protected router: Router,
+    protected url: string) {
+    // super();
+    this.entity = <T>{};
   }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     console.log(this.id)
-    if(this.id){
+    if (this.id) {
       this.service.getById(this.id).subscribe(
         u => this.entity = u,
-        error => { console.log(error) ; this.errorMessage = <any>error});
+        error => { console.log(error); this.errorMessage = <any>error });
     }
   }
 
-  getEntity(){
+  getEntity() {
     return this.entity
   }
 
-  onSubmit(entity: T){
+  onSubmit(entity: T) {
     let that = this;
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.getForm().invalid) {
+      return;
+    }
+    console.log(this.getForm().value)
     const id = this.route.snapshot.params['id']
     console.log(entity)
 
-    if(!this.id){
+    if (!this.id) {
       this.service.add(entity)
       this.onBack();
-    }else{
+    } else {
       entity.id = this.id
       this.service.update(entity)
       this.onBack();
     }
 
-  //   if(!this.id){
-  //       this.service.add(entity).subscribe(
-  //         new_user => {
-  //         this.onBack()
-  //         },
-  //         error => this.errorMessage = <any>error
-  //   );
-  //   return
-  // }
 
-  //   this.service.update(this.getEntity() ).subscribe(
-  //     get_result,
-  //     error => {
-  //       this.errorMessage = <any> error
-  //       this.submitted = false;
-  //       console.log("Update error" + JSON.stringify(error));
-  //       //this.notification = { msgType: 'error', msgBody: error /*['error'].errorMessage */};
-      
-  //     });
-
-  //     function get_result(update_status:any) {
-  //       if (update_status.status === 204) {
-  //         console.log('update success');
-  //         that.onBack();
-  //       } else {
-  //         return console.log('update failed');
-  //       }
-  //     }
   }
 
   onBack() {
     this.router.navigate(['/' + this.service.getCollName()]);
   }
+
+  get f() { return this.getForm().controls; }
+
+
+  /* TODO abstract getForm(): any */
+  getForm(): any { return null}
+
 
 }
