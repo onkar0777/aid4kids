@@ -9,6 +9,7 @@ import { QuoteRoutingModule} from './quote-routing.module';
 import { NgSelectModule,NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
+import { QuoteViewComponent } from '@app/quote/quote-view/quote-view.component';
 
 //import { JsonSchemaFormModule }               from 'angular2-json-schema-form';
 @NgModule({
@@ -24,6 +25,7 @@ import { HttpModule } from '@angular/http';
   declarations: [
     QuoteListComponent,
     QuoteAddComponent,
+    QuoteViewComponent
     ],
   exports: [
     QuoteListComponent,

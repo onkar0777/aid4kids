@@ -1,29 +1,32 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Quote} from "../quote";
 import { QuoteService} from "../quote.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { BaseEditComponent } from '../../base/base-edit.component';
+import { BaseEntity } from '@app/base/base';
+
 
 
 @Component({
-selector: 'app-quote-edit',
-templateUrl: './quote-edit.component.html',
-styleUrls: ['./quote-edit.component.css']
+selector: 'quote-view',
+templateUrl: './quote-view.component.html',
+styleUrls: ['./quote-view.component.css']
 })
-export class QuoteEditComponent extends BaseEditComponent<Quote> implements OnInit {
-    quote: Quote;
+export class QuoteViewComponent implements OnInit {
+    @Input() entity: Quote;
     errorMessage: string;
+    @Output() editClicked = new EventEmitter<BaseEntity>();
+    @Output() deleteClicked = new EventEmitter<BaseEntity>();
 
-    constructor(protected quoteService: QuoteService,
-    protected route: ActivatedRoute,
-    protected router: Router) {
-    super(quoteService, route, router, 'quotes')
+    ngOnInit(){}
+
+    edit (){
+        this.editClicked.emit(this.entity)
     }
 
-    getForm():any{
-        return null;
+    delete(){
+        this.deleteClicked.emit(this.entity)
     }
-
 }

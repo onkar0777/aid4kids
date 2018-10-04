@@ -3,81 +3,63 @@
         <span translate>Travel Quotes</span>
         <button class="btn btn-primary float-right" (click)="showAdd()">
             <span class="fa fa-plus"></span>
-            <span  translate>
-            Create
+            <span translate>
+                Create
             </span>
         </button>
     </h2>
-    <div class="row">
+
+    Card View <input (change)="fldChange($event)" [value]="cards" type="checkbox" checked/>
+
+    <div *ngIf=" $entities && cards">
+        <quote-view [entity]="e" *ngFor="let e of $entities | async"
+        (editClicked) = "showEdit($event)" (deleteClicked) = "delete($event)" 
+        > </quote-view>
     </div>
-    <br/>
-    <div class="table-responsive" *ngIf="$entities">
-        <table class="table table-striped">
+
+    <div *ngIf="$entities && !cards">
+
+        <table class="table table-striped  dt-responsive nowrap">
             <thead>
-            <tr>
-<th><span translate>tags</span> <span class="fa fa-sort"></span></th>
-<th><span translate>text</span> <span class="fa fa-sort"></span></th>
-<th><span translate>explanation</span> <span class="fa fa-sort"></span></th>
-<th><span translate>page</span> <span class="fa fa-sort"></span></th>
-                <th></th>
-            </tr>
+                <tr>
+                    <th>
+                        <span translate>Tags</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th>
+                        <span translate>Text</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th>
+                        <span translate>Explanation</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th>
+                        <span translate>Page</span>
+                        <span class="fa fa-sort"></span>
+                    </th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let e of $entities | async ">
-            <!--
-                <td><a [routerLink]="['../travel-quote', travelQuote.id ]"> entity.id </a></td>
-                -->
-<td> {{e.tags}}</td>
-<td> {{e.text}}</td>
-<td> {{e.explanation}}</td>
-<td> {{e.page}}</td>
-                <td class="text-right">
-                    <button class="btn btn-default" (click)="showEdit(e)">
-                        <span class="fa fa-pencil"></span>
-                        https://fontawesome.com/v4.7.0/icon/pencil
-                    </button>
-                    <button class="btn btn-default" (click)="delete(e)">
-                        <span class="fa fa-delete"></span>
-                    </button>
+                <tr *ngFor="let e of $entities | async">
                     <!--
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['../travel-quote', travelQuote.id ]"
-                                class="btn btn-info btn-sm">
-                            <span class="fa fa-eye"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+            <td><a [routerLink]="['../travel-quote', travelQuote.id ]"> entity.id </a></td>
+            -->
+                    <td> {{e.tags}}</td>
+                    <td> {{e.text}}</td>
+                    <td> {{e.explanation}}</td>
+                    <td> {{e.page}}</td>
+                    <td class="text-right">
+                        <button class="btn btn-default" (click)="showEdit(e)">
+                            <span class="fa fa-edit"></span>
                         </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'travel-quote/'+ travelQuote.id + '/edit'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-primary btn-sm">
-                            <span class="fa fa-pencil"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        <button class="btn btn-danger" (click)="delete(e)">
+                            <span class="fa fa-trash"></span>
                         </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'travel-quote/'+ travelQuote.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <span class="fa fa-remove"></span>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
-                    </div>
-                    -->
-                </td>
-            </tr>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
-<!--
-    <div *ngIf="travelQuotes && travelQuotes.length">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-        </div>
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
-        </div>
-    </div>
-    -->
 </div>

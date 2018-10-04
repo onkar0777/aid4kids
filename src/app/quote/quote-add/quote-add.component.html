@@ -11,8 +11,9 @@
                     <label for="tags-input"> *
                         <span translate>Tags</span>
                     </label>
-                    <input type="text" formControlName="tags" id="tags-input" class="form-control" [(ngModel)]="entity.tags">
-                    <div class="text text-danger" *ngIf="submitted && f.tags.errors ">
+                    <input type="text" formControlName="tags" id="tags-input" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tags.errors }"
+                        [(ngModel)]="entity.tags">
+                    <div class="invalid-feedback" *ngIf="submitted && f.tags.errors ">
                         <p *ngIf="f.tags.errors.required">Required !</p>
                     </div>
 
@@ -23,8 +24,9 @@
                     <label for="text-input"> *
                         <span translate>Text</span>
                     </label>
-                    <textarea formControlName="text" id="text-input" class="form-control" [(ngModel)]="entity.text" rows="8"></textarea>
-                    <div class="text text-danger" *ngIf="submitted && f.text.errors ">
+                    <textarea formControlName="text" id="text-input" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.text.errors }"
+                        [(ngModel)]="entity.text" rows="8"></textarea>
+                    <div class="invalid-feedback" *ngIf="submitted && f.text.errors ">
                         <p *ngIf="f.text.errors.required">Required !</p>
                     </div>
 
@@ -35,10 +37,12 @@
                     <label for="explanation-input"> *
                         <span translate>Explanation</span>
                     </label>
-                    <textarea formControlName="explanation" id="explanation-input" class="form-control" [(ngModel)]="entity.explanation" rows="8"></textarea>
-                    <div class="text text-danger" *ngIf="submitted && f.explanation.errors ">
+                    <textarea formControlName="explanation" id="explanation-input" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.explanation.errors }"
+                        [(ngModel)]="entity.explanation" rows="8"></textarea>
+                    <div class="invalid-feedback" *ngIf="submitted && f.explanation.errors ">
                         <p *ngIf="f.explanation.errors.required">Required !</p>
                     </div>
+
                 </div>
 
 
@@ -46,11 +50,13 @@
                     <label for="page-input">
                         <span translate>Page</span>
                     </label>
-                    <input type="number" formControlName="page" id="page-input" class="form-control" [(ngModel)]="entity.page">
-                    <div class="text text-danger" *ngIf="submitted && f.page.errors ">
+                    <input type="number" formControlName="page" id="page-input" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.page.errors }"
+                        [(ngModel)]="entity.page">
+                    <div class="invalid-feedback" *ngIf="submitted && f.page.errors ">
                         <p *ngIf="f.page.errors.max" translate>must_be_max 1430</p>
                         <p *ngIf="f.page.errors.required">Required !</p>
                     </div>
+
                 </div>
 
 
