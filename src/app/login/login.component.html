@@ -27,7 +27,7 @@
             <div class="form-group">
               <label class="d-block">
                 <input type="text" class="form-control" formControlName="username" autocomplete="username"
-                       [placeholder]="'Username' | translate"/>
+                       [placeholder]="'Username' | translate" id="username-input"/>
                 <span hidden translate>Username</span>
                 <small [hidden]="loginForm.controls.username.valid || loginForm.controls.username.untouched"
                        class="text-danger" translate>
@@ -39,7 +39,7 @@
                        [placeholder]="'Password' | translate" required/>
                 <span hidden translate>Password</span>
                 <small [hidden]="loginForm.controls.password.valid || loginForm.controls.password.untouched"
-                       class="text-danger" translate>
+                       class="text-danger" id="password-input" translate> 
                   Password is required
                 </small>
               </label>

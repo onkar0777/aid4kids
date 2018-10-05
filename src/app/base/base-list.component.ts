@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Router} from "@angular/router";
 
 import { BaseEntity } from './base';
@@ -13,6 +13,11 @@ export abstract class BaseListComponent<T extends BaseEntity> implements OnInit 
   errorMessage: string;
   response_status: number;
   is_insert = false;
+
+  @Input() cards = true
+  fldChange(values: any) {
+      this.cards = values.currentTarget.checked
+  }
 
   constructor(protected service: BaseFireService<T>, protected router: Router) {
     //this.$entities = <T[]>[];

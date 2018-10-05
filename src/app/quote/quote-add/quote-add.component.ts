@@ -2,36 +2,31 @@
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Validators, FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { ActivatedRoute, Router } from "@angular/router";
+
 
 import { Quote } from "../quote";
 import { QuoteService } from "../quote.service";
 import { BaseEditComponent } from '@app/base/base-edit.component';
-
-
-
-
-
-
+import { BaseFormComponent } from '@app/base/base-from.component';
 
 @Component({
-    selector: 'app-quote-add',
+    selector: 'quote-add',
     templateUrl: './quote-add.component.html',
     styleUrls: ['./quote-add.component.css']
 })
-export class QuoteAddComponent extends BaseEditComponent<Quote> implements OnInit {
+export class QuoteAddComponent extends BaseFormComponent<Quote> implements OnInit {
 
     quote: Quote;
     errorMessage: string;
     public quoteForm: FormGroup;
 
-
-
-    constructor(protected quoteService: QuoteService, protected route: ActivatedRoute, protected router: Router, private fb: FormBuilder) {
-        super(quoteService, route, router, 'quotes')
-        this.createForm();
+    constructor(private fb: FormBuilder) {
+        super();
     }
 
+    ngOnInit(){
+        this.createForm();
+    }
 
     private createForm(): void {
         this.quoteForm = this.fb.group({
@@ -44,13 +39,10 @@ export class QuoteAddComponent extends BaseEditComponent<Quote> implements OnIni
         });
     }
 
-
-
-
     getForm() { return this.quoteForm };
 
     submit() {
-        super.onSubmit(this.entity);
+        super.onSubmit();
     }
 
 }

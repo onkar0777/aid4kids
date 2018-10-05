@@ -11,18 +11,11 @@ import { BaseEntity } from '../../base/base';
     templateUrl: './quote-list.component.html',
     styleUrls: ['./quote-list.component.css']
 })
-export class QuoteListComponent extends BaseListComponent<Quote>
-    implements OnInit {
+export class QuoteListComponent extends BaseListComponent<Quote> implements OnInit {
 
-    @Input() cards = true
 
     constructor(protected quoteService: QuoteService, protected router: Router) {
         super(quoteService, router)
     }
 
-    fldChange(values: any) {
-        this.cards = values.currentTarget.checked
-        
-        console.log(values.currentTarget.checked);
-    }
 }

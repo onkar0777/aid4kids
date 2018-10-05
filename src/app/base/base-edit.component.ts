@@ -56,14 +56,7 @@ export abstract class BaseEditComponent<T extends BaseEntity> implements OnInit 
   }
 
   onSubmit(entity: T) {
-    let that = this;
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.getForm().invalid) {
-      return;
-    }
-    console.log(this.getForm().value)
+   
     const id = this.route.snapshot.params['id']
     console.log(entity)
 
@@ -76,18 +69,10 @@ export abstract class BaseEditComponent<T extends BaseEntity> implements OnInit 
       this.onBack();
     }
 
-
   }
 
   onBack() {
     this.router.navigate(['/' + this.service.getCollName()]);
   }
-
-  get f() { return this.getForm().controls; }
-
-
-  /* TODO abstract getForm(): any */
-  getForm(): any { return null}
-
 
 }

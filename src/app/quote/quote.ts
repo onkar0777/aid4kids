@@ -5,10 +5,6 @@ import * as Chance from 'chance';
 import * as Factory from 'factory.ts'
 
 
-
-
-
-
 export  interface Quote extends BaseEntity{
 tags : string
 text : string

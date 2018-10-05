@@ -17,7 +17,7 @@ export class AppPage {
   }
 
   navigateTo() {
-    return browser.get('/');
+    return browser.get('/login');
   }
 
   login() {

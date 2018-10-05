@@ -10,6 +10,8 @@ import { NgSelectModule,NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
 import { QuoteViewComponent } from '@app/quote/quote-view/quote-view.component';
+import { QuoteManageComponent } from './quote-manage/quote-manage.component';
+import { QuoteListViewComponent } from './quote-list-view/quote-list-view.component';
 
 //import { JsonSchemaFormModule }               from 'angular2-json-schema-form';
 @NgModule({
@@ -25,7 +27,9 @@ import { QuoteViewComponent } from '@app/quote/quote-view/quote-view.component';
   declarations: [
     QuoteListComponent,
     QuoteAddComponent,
-    QuoteViewComponent
+    QuoteViewComponent,
+    QuoteManageComponent,
+    QuoteListViewComponent
     ],
   exports: [
     QuoteListComponent,

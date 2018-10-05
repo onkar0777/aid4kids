@@ -24,3 +24,25 @@ export const environment = {
     'fr-FR'
   ]
 };
+
+
+
+
+export const envtest = {
+  production: false,
+  version: env.npm_package_version + '-dev',
+  firebase: {
+    apiKey: "AIzaSyC1lhQgXW-08ttzTrSktVvNTFCA1HVLpw4",
+    authDomain: "aid4kids-ed95a.firebaseapp.com",
+    databaseURL: "https://aid4kids-ed95a.firebaseio.com",
+    projectId: "aid4kids-ed95a",
+    storageBucket: "aid4kids-ed95a.appspot.com",
+    messagingSenderId: "776583101410"
+  },
+  serverUrl: '/api',
+  defaultLanguage: 'en-US',
+  supportedLanguages: [
+    'en-US',
+    'fr-FR'
+  ]
+};

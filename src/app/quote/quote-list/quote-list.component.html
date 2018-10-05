@@ -1,6 +1,6 @@
 <div>
     <h2>
-        <span translate>Travel Quotes</span>
+        <span translate>Quotes</span>
         <button class="btn btn-primary float-right" (click)="showAdd()">
             <span class="fa fa-plus"></span>
             <span translate>
@@ -9,12 +9,12 @@
         </button>
     </h2>
 
-    Card View <input (change)="fldChange($event)" [value]="cards" type="checkbox" checked/>
+    Card View
+    <input (change)="fldChange($event)" [value]="cards" type="checkbox" checked/>
 
     <div *ngIf=" $entities && cards">
-        <quote-view [entity]="e" *ngFor="let e of $entities | async"
-        (editClicked) = "showEdit($event)" (deleteClicked) = "delete($event)" 
-        > </quote-view>
+        <quote-view [entity]="e" *ngFor="let e of $entities | async" (editClicked)="showEdit($event)" (deleteClicked)="delete($event)">
+        </quote-view>
     </div>
 
     <div *ngIf="$entities && !cards">
@@ -43,9 +43,6 @@
             </thead>
             <tbody>
                 <tr *ngFor="let e of $entities | async">
-                    <!--
-            <td><a [routerLink]="['../travel-quote', travelQuote.id ]"> entity.id </a></td>
-            -->
                     <td> {{e.tags}}</td>
                     <td> {{e.text}}</td>
                     <td> {{e.explanation}}</td>
