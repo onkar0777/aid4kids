@@ -20,12 +20,13 @@ export class LoginComponent implements OnInit {
   error: string;
   loginForm: FormGroup;
   isLoading = false;
+  showRegister = false;
 
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private i18nService: I18nService,
     private authenticationService: AuthenticationService,
-  private fms:FlashMessagesService) {
+  private fms: FlashMessagesService) {
     this.createForm();
   }
 
@@ -37,7 +38,7 @@ export class LoginComponent implements OnInit {
       .login(this.loginForm.value)
       .then((x: any) => {
         //this.authenticationService.localUser = x.user
-        this.fms.show("success", { cssClass:'alert alert-success'})
+        this.fms.show("success", { cssClass: 'alert alert-success'})
         this.router.navigate(['/'], { replaceUrl: true })
         this.isLoading = false;
       }

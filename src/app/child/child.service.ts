@@ -13,7 +13,7 @@ import { FirestoreService } from '@app/base/firestore.service';
 import { AuthenticationService } from '@app/core';
 
 @Injectable()
-export class ChildService extends BaseFireService<Child>{
+export class ChildService extends BaseFireService<Child> {
 
   entity_url = this.getCollName()
 
@@ -21,6 +21,10 @@ export class ChildService extends BaseFireService<Child>{
     protected messages: FlashMessagesService,
     protected authService: AuthenticationService) {
     super(afs, messages)
+  }
+
+  getCollName() {
+    return 'childs'
   }
 
   sponsor(child: Child): any {
@@ -33,9 +37,22 @@ export class ChildService extends BaseFireService<Child>{
     )
   }
 
+  unsponsor(child: Child): any {
+    child.parent = null;
+    //TODO: create unsponsorship here
+
+    this.update(child).then(
+      x => this.messages.show("successfully sponsored - thanks")
+    ).catch(
+      error => this.messages.show("error sponsoring !! -  " + error)
+    )
+  }
+
   getMyKids() {
+    console.log(this.authService.localUser.email);
     return this.afs.colWithIds$(this.getCollName(),
-      (ref: any) => ref.where('parent', '==', this.authService.localUser.email))
+      (ref: any) => ref.where('parent', '==',
+      this.authService.localUser.email))
   }
 
   getUnsponsored() {
@@ -44,9 +61,7 @@ export class ChildService extends BaseFireService<Child>{
   }
 
 
-  getCollName() {
-    return 'childs'
-  }
+
 
 
 

@@ -4,7 +4,8 @@ import * as _ from 'lodash';
 
 export abstract class BaseFormComponent<T extends BaseEntity> {
     @Output() formSubmitted: EventEmitter<BaseEntity> = new EventEmitter
-    @Input() entity:T = null;
+    @Input() entity:T = <T>{};
+    @Input() stepComplete:EventEmitter<BaseEntity> = new EventEmitter
      
     errorMessage: string;
     id: any
@@ -21,6 +22,10 @@ export abstract class BaseFormComponent<T extends BaseEntity> {
   */
     submitted = false;
 
+    form2Entity(){
+        _.assign(this.entity, this.getForm().value)
+    }
+
     onSubmit() {
         this.submitted = true;
 
@@ -29,8 +34,9 @@ export abstract class BaseFormComponent<T extends BaseEntity> {
             return;
         }
         console.log(this.getForm().value)
-        _.assign(this.entity, this.getForm().value)
+        this.form2Entity();
         this.formSubmitted.emit(this.entity)
+        this.stepComplete.emit(this.entity)
 
     }
 
