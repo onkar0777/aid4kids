@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "aid4kids-3342e"
+    "default": "aid4kids-3342e",
+    "aid4kids": "aid4kids-ed95a"
   }
 }
