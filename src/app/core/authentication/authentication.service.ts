@@ -53,7 +53,7 @@ export class AuthenticationService {
   localUser: firebase.User;
   //items: FirebaseListObservable<any[]>;
 
-  constructor(protected afAuth: AngularFireAuth, protected messages:FlashMessagesService) {
+  constructor(protected afAuth: AngularFireAuth, protected messages: FlashMessagesService) {
     this.afAuth.authState.subscribe(user => {
       this.localUser = user;
     });
@@ -63,19 +63,20 @@ export class AuthenticationService {
 
   login(context: LoginContext) {
      return this.afAuth.auth
-      .signInAndRetrieveDataWithEmailAndPassword(context.username, 
+      .signInAndRetrieveDataWithEmailAndPassword(context.username,
         context.password)
   }
 
   public get isAuthenticated$(): Observable<boolean> {
-    return this.afAuth.authState.pipe(map((user:any) => user !== null));
+    return this.afAuth.authState.pipe(map((user: any) => user !== null));
   }
 
-  register(credentials: Credentials): Promise<any> {
+  register(email: string, password: string): Promise<any> {
+   console.log(email, password)
     return this.afAuth.auth
       .createUserWithEmailAndPassword(
-        credentials.email,
-        credentials.password,
+        email,
+        password,
       );
   }
 

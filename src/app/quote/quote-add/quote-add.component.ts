@@ -45,4 +45,9 @@ export class QuoteAddComponent extends BaseFormComponent<Quote> implements OnIni
         super.onSubmit();
     }
 
+    form2Entity(){
+        super.form2Entity()
+        this.entity.tags = this.f.tags.value.split(',')
+    }
+
 }

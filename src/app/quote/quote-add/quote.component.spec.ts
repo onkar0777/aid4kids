@@ -1,31 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { quoteFactory } from '../quote';
 
-//import { QuoteAddComponent } from './quote.component';
+import { QuoteAddComponent } from './quote-add.component';
 
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { QuoteAddComponent } from '@app/quote/quote-add/quote-add.component';
-import { Quote } from '@app/quote/quote';
-import { CommonModule } from '@angular/common';
-//import { QuoteDataImpl } from '@app/quote-data-impl';
 
 fdescribe('QuoteAddComponent', () => {
     let component: QuoteAddComponent;
     let fixture: ComponentFixture<QuoteAddComponent>;
 
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [QuoteAddComponent],
-            imports: [
-                CommonModule,
-                FormsModule,
-                ReactiveFormsModule,
-                NgSelectModule,
-                NgbModule,
-
-            ],
+            imports: [ReactiveFormsModule, FormsModule, NgbModule.forRoot(), NgSelectModule],
 
         })
             .compileComponents();
@@ -35,6 +26,7 @@ fdescribe('QuoteAddComponent', () => {
         fixture = TestBed.createComponent(QuoteAddComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
+        this.entity = quoteFactory.build();
     });
 
     it('should create', () => {
@@ -45,119 +37,32 @@ fdescribe('QuoteAddComponent', () => {
         expect(component.getForm().valid).toBeFalsy();
     });
 
-    it('tags field validity', () => {
-        let errors = {};
-        let fld = component.getForm().controls['tags'];
-
-        expect(fld.valid).toBeFalsy();
-
-        //  field is required
-        errors = fld.errors || {};
-        expect(errors['required']).toBeTruthy();
-
-        // Set field to something
-        fld.setValue("to");
-        errors = fld.errors || {};
-        expect(errors['required']).toBeFalsy();
-        
-
-        // Set field to something correct
-        fld.setValue("toronto");
-        errors = fld.errors || {};
-        expect(errors).toEqual({});
-
+    it('form valid when editing existing', () => {
+        component.entity = this.entity
+        fixture.detectChanges();
+        expect(component.getForm().valid).toBeTruthy();
     });
 
-    // it('text field validity', () => {
-    //     let errors = {};
-    //     let fld = component.getForm().controls['text'];
-
-    //     expect(fld.valid).toBeFalsy();
-
-    //     //  field is required
-    //     errors = fld.errors || {};
-    //     expect(errors['required']).toBeTruthy();
-
-    //     // Set field to something
-    //     fld.setValue("to");
-    //     errors = fld.errors || {};
-    //     expect(errors['required']).toBeFalsy();
-       
-    //     // Set field to something correct
-    //     fld.setValue("toronto");
-    //     errors = fld.errors || {};
-    //     expect(errors).toEqual({});
-
-    // });
-
-    // it('explanation field validity', () => {
-    //     let errors = {};
-    //     let fld = component.getForm().controls['explanation'];
-
-    //     expect(fld.valid).toBeFalsy();
-
-    //     //  field is required
-    //     errors = fld.errors || {};
-    //     expect(errors['required']).toBeTruthy();
-
-    //     // Set field to something
-    //     fld.setValue("to");
-    //     errors = fld.errors || {};
-    //     expect(errors['required']).toBeFalsy();
-    //     //expect(errors['minlength']).toBeTruthy();
-
-    //     // Set field to something correct
-    //     fld.setValue("toronto");
-    //     errors = fld.errors || {};
-    //     expect(errors).toEqual({});
-
-    // });
-
-    // it('page field validity', () => {
-    //     let errors = {};
-    //     let fld = component.getForm().controls['page'];
-
-    //     expect(fld.valid).toBeTruthy();
-
-    //     //  field is required
-    //     errors = fld.errors || {};
-        
-    //     // Set field to something
-    //     fld.setValue("to");
-    //     errors = fld.errors || {};
-    //     expect(errors['required']).toBeFalsy();
-    //     expect(errors['minlength']).toBeTruthy();
-
-    //     // Set field to something correct
-    //     fld.setValue("toronto");
-    //     errors = fld.errors || {};
-    //     expect(errors).toEqual({});
-
-    // });
 
 
+    it('submitting a form emits a valid entity', () => {
+        expect(component.getForm().valid).toBeFalsy();
 
+        component.getForm().controls['tags'].setValue(this.entity.tags)
+        component.getForm().controls['text'].setValue(this.entity.text)
+        component.getForm().controls['explanation'].setValue(this.entity.explanation)
+        component.getForm().controls['page'].setValue(this.entity.page)
 
-    // it('submitting a form emits entity', () => {
-    //     expect(component.getForm().valid).toBeFalsy();
+        expect(component.getForm().valid).toBeTruthy();
 
-    //     component.f.text.setValue("test@test.com, sdfd");
-    //     component.f.tags.setValue("gurmat, equanitmity");
-    //     component.f.explanation.setValue("test@test.com");
-    //     component.f.page.setValue(200);
-        
+        component.stepComplete.subscribe((emitted: any) => {
+            expect(emitted.tags).toBe(this.entity.tags);
+            expect(emitted.text).toBe(this.entity.text);
+            expect(emitted.explanation).toBe(this.entity.explanation);
+            expect(emitted.page).toBe(this.entity.page);
+        });
 
-    //     expect(component.getForm().valid).toBeTruthy();
-
-    //     let entity: Quote;
-    //     // Subscribe to the Observable and store the user in a local variable.
-    //     component.formSubmitted.subscribe((value:any) => entity = value);
-
-    //     // Trigger the login function
-    //     component.submit();
-
-    //     // Now we can check to make sure the emitted value is correct
-    //     expect(entity.text).toBe("test@test.com, sdfd");
-    //     expect(entity.tags).toBe("gurmat, equanitmity");
-    // });
+        // Trigger the login function
+        component.submit();
+    });
 });

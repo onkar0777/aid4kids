@@ -22,6 +22,16 @@ export class QuoteService extends BaseFireService<Quote>{
     super(afs, messages)
   }
 
+  getMovies(start:any, end:any) {
+    //if(!start)
+      start = 'egotism'
+    console.log(start)
+    return this.afs.colWithIds$(this.getCollName(), (ref:any) => 
+    ref
+      .where('tags', 'array-contains', start)
+  )
+  }
+
   getCollName(){
     return 'quotes'
   }

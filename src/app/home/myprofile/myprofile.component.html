@@ -1,5 +1,5 @@
 <div class="container-fluid">
   <div *ngFor="let e of (entities$ | async)">
-    <child-view [entity]="e" (parentClicked)="sponsor($event)"></child-view>
+    <child-view [entity]="e" (parentClicked)="unsponsor($event)"></child-view>
   </div>
 </div>

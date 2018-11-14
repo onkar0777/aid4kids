@@ -9,6 +9,7 @@ import { HomeComponent } from './home.component';
 import { QuoteService } from './quote.service';
 import { MyCompsModule } from '@app/base/mycomps';
 import { ChildModule } from '@app/child/child.module';
+import { MyprofileComponent } from '@app/home/myprofile/myprofile.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ChildModule } from '@app/child/child.module';
     ChildModule
   ],
   declarations: [
-    HomeComponent
+    HomeComponent,
+    MyprofileComponent
   ],
   providers: [
     QuoteService

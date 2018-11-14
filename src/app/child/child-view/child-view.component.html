@@ -1,6 +1,5 @@
 <div class="card" style="width: 18rem;">
-  <ng-container *ngIf="entity.imageUrl | async; let image">
-    {{entity.imageUrl | json}}
+  <ng-container *ngIf="img | async; let image">
       <img class="card-img-top" src="{{image}}"/>
   </ng-container>
   <div class="card-body">
@@ -9,6 +8,8 @@
       <p class="card-text">Likes - {{entity.interests}}</p>
       <p class="card-text">{{entity.description}}</p>
       <a href="#" *ngIf= "entity.parent" class="card-link">{{entity.parent}}</a>
-      <button class="btn-primary" (click)="clicked()" >Be my parent !</button>
+      <button class="btn-primary" (click)="clicked('sponsor')" [hidden]="entity.parent" >Be my parent !</button>
+      <button class="btn-primary" (click)="clicked('Unsponsor')" 
+         [hidden]="!entity.parent" >Unsponsor</button>
     </div>
   </div>

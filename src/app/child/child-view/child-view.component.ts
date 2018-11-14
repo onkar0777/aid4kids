@@ -19,6 +19,7 @@ export class ChildViewComponent extends BaseEditComponent<Child> implements OnIn
     @Input() entity: ChildImpl;
     original: Child;
     errorMessage: string;
+    img: any
 
     @Output() parentClicked: EventEmitter<Child> = new EventEmitter()
 
@@ -34,14 +35,14 @@ export class ChildViewComponent extends BaseEditComponent<Child> implements OnIn
     ngOnInit() {
         this.original = this.entity
         this.entity = new ChildImpl(this.entity);
-        this.entity.imageUrl = this.afStorage.ref(this.entity.image).getDownloadURL();
+        this.img = this.afStorage.ref(this.entity.image).getDownloadURL();
         console.log(this.entity.age())
     }
 
-    clicked() {
+    clicked(evt: any) {
         console.log('clicked')
         const temp: Child = <Child> _.pickBy(this.entity, x => typeof x !== 'function');
-        temp.parent = '55555'
+        temp.parent = '55555'  //why this line is here
         this.parentClicked.emit(temp)
     }
 
