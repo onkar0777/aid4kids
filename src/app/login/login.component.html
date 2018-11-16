@@ -1,5 +1,4 @@
 <div class="login-container bg-light">
-
   <div class="login-box" [hidden]="showRegister">
     <h1 translate>APP_NAME</h1>
     <div>
@@ -69,16 +68,14 @@
             <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid || isLoading">
               <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i> <span translate>Login</span>
             </button>
-
-          
           </form>
         </div>
       </div>
     </div>
   </div>
-  <button class="btn btn-primary"  [hidden]="showRegister" [disabled]="isLoading" (click)="showRegister = true">
-      <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i> <span translate>Register</span>
-    </button>
+  <button class="btn btn-primary" [hidden]="showRegister" [disabled]="isLoading" (click)="showRegister = true">
+    <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i> <span translate>Register</span>
+  </button>
 
   <app-register #reg [hidden]="!showRegister"></app-register>
 </div>
