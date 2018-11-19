@@ -28,7 +28,7 @@ export class UserService extends BaseFireService<User> {
 
   getCollName() {
     console.log('usersColl  called')
-    return 'usersColl'
+    return 'users'
   }
 
   addUser(u: User) {

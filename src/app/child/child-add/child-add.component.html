@@ -1,116 +1,135 @@
-<div class="card">
-    <div class="form-wrapper text-center" style="width: 80%; background-color: #eef ; padding: 1.5em">
-        <h2 class="text-center">Add/Edit Child </h2>
+<form [formGroup]="childForm" (submit)="submit()" novalidate>
+  <div class="container-fluid bg-light py-3">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="mb-0">{{ !entity.id ? "Add" : "Edit" }}Child</h4>
+      </div>
+      <div class="card-body">
         <form [formGroup]="childForm" (submit)="submit()" novalidate>
-
-            <div class="form-group">
-                <label for="firstName-input">
-                    <span translate>firstName</span>
-                </label>
-                <input type="text" class="form-control" formControlName="firstName" id="firstName-input" [(ngModel)]="entity.firstName">
-                <div class="alert alert-danger" *ngIf="childForm.get('firstName').errors && childForm.get('firstName').touched">
-                    <p *ngIf="childForm.get('firstName').errors.required">Required !</p>
-                </div>
-
+          <div class="form-group">
+            <label for="firstName-input"> * <span translate>Firstname</span></label>
+            <input
+              type="text"
+              formControlName="firstName"
+              id="firstName-input"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+              [(ngModel)]="entity.firstName"
+            />
+            <div class="invalid-feedback" *ngIf="submitted && f.firstName.errors">
+              <p *ngIf="f.firstName.errors.required">Required !</p>
             </div>
+          </div>
 
-
-            <div class="form-group">
-                <label for="lastName-input">
-                    <span translate>lastName</span>
-                </label>
-                <input type="text" class="form-control" formControlName="lastName" id="lastName-input" [(ngModel)]="entity.lastName">
-                <div class="alert alert-danger" *ngIf="childForm.get('lastName').errors && childForm.get('lastName').touched">
-                    <p *ngIf="childForm.get('lastName').errors.required">Required !</p>
-                </div>
-
+          <div class="form-group">
+            <label for="lastName-input"> * <span translate>Lastname</span></label>
+            <input
+              type="text"
+              formControlName="lastName"
+              id="lastName-input"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+              [(ngModel)]="entity.lastName"
+            />
+            <div class="invalid-feedback" *ngIf="submitted && f.lastName.errors">
+              <p *ngIf="f.lastName.errors.required">Required !</p>
             </div>
+          </div>
 
-            <div class="form-group">
-                <label for="image-input">
-                    <span translate>Image</span>
-                </label>
-                <input type="file" class="form-control" formControlName="image" id="image-input" (change)="upload($event)" accept=".png,.jpg"/>
-                <progress max="100" *ngIf="uploadProgress | async; let uploadProgressPercentage" [value]="uploadProgressPercentage"><span>{{uploadProgressPercentage}}%</span></progress>
+          <div class="form-group">
+            <label for="gender-input"> * <span translate>Gender</span></label>
+            <ng-select
+              formControlName="gender"
+              id="gender-input"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.gender.errors }"
+              [(ngModel)]="entity.gender"
+            >
+              <ng-option value="Male">MALE</ng-option>
+              <ng-option value="Female">FEMALE</ng-option>
+            </ng-select>
+
+            <div class="invalid-feedback" *ngIf="submitted && f.gender.errors">
+              <p *ngIf="f.gender.errors.required">Required !</p>
             </div>
+          </div>
 
-
-            <div class="form-group">
-                <label for="gender-input">
-                    <span translate>gender</span>
-                </label>
-                <ng-select formControlName="gender" id="gender-input" [(ngModel)]="entity.gender">
-                    <ng-option value="Male">MALE</ng-option>
-                    <ng-option value="Female">FEMALE</ng-option>
-                </ng-select>
-
-                <div class="alert alert-danger" *ngIf="childForm.get('gender').errors && childForm.get('gender').touched">
-                    <p *ngIf="childForm.get('gender').errors.required">Required !</p>
-                </div>
-
+          <div class="form-group">
+            <label for="dob-input"> * <span translate>Dob</span></label>
+            <div class="input-group">
+              <input
+                placeholder="yyyy-mm-dd"
+                formControlName="dob"
+                id="dob-input"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.dob.errors }"
+                [(ngModel)]="entity.dob"
+                ngbDatepicker
+                #d_dob="ngbDatepicker"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="d_dob.toggle()" type="button">
+                  <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                </button>
+              </div>
             </div>
-
-
-            <div class="form-group">
-                <label for="dob-input">
-                    <span translate>dob</span>
-                </label>
-                <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" formControlName="dob" id="dob-input" [(ngModel)]="entity.dob" ngbDatepicker
-                        #d_dob="ngbDatepicker">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" (click)="d_dob.toggle()" type="button">
-                            <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
-                        </button>
-                    </div>
-                </div>
-                <div class="alert alert-danger" *ngIf="childForm.get('dob').errors && childForm.get('dob').touched">
-                    <p *ngIf="childForm.get('dob').errors.required">Required !</p>
-                </div>
-
+            <div class="invalid-feedback" *ngIf="submitted && f.dob.errors">
+              <p *ngIf="f.dob.errors.required">Required !</p>
             </div>
+          </div>
 
+          <div class="form-group">
+            <label for="image-input"> <span translate>Image</span> </label>
+            <input
+              type="file"
+              class="form-control"
+              formControlName="image"
+              id="image-input"
+              (change)="upload($event)"
+              accept=".png,.jpg"
+              [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+            />
+            <progress
+              max="100"
+              *ngIf="(uploadProgress | async); let uploadProgressPercentage"
+              [value]="uploadProgressPercentage"
+              ><span>{{ uploadProgressPercentage }}%</span></progress
+            >
+          </div>
 
-            <div class="form-group">
-                <label for="description-input">
-                    <span translate>description</span>
-                </label>
-                <textarea formControlName="description" id="desc-input" [(ngModel)]="entity.description"></textarea>
-                <div class="alert alert-danger" *ngIf="childForm.get('description').errors && childForm.get('description').touched">
-                    <p *ngIf="childForm.get('description').errors.required">Required !</p>
-                </div>
-
+          <div class="form-group">
+            <label for="description-input"> <span translate>Description</span></label>
+            <textarea
+              formControlName="description"
+              id="description-input"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+              [(ngModel)]="entity.description"
+              rows="8"
+            ></textarea>
+            <div class="invalid-feedback" *ngIf="submitted && f.description.errors">
+              <p *ngIf="f.description.errors.required">Required !</p>
             </div>
+          </div>
 
-            <div class="form-group">
-                <label for="interests-input">
-                    <span translate>interests</span>
-                </label>
-                <input type="text" class="form-control" formControlName="interests" id="interests-input" [(ngModel)]="entity.interests">
-                <div class="alert alert-danger" *ngIf="childForm.get('interests').errors && childForm.get('interests').touched">
-                    <p *ngIf="childForm.get('interests').errors.required">Required !</p>
-                </div>
-
+          <div class="form-group">
+            <label for="interests-input"> <span translate>Interests</span></label>
+            <input
+              type="text"
+              formControlName="interests"
+              id="interests-input"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.interests.errors }"
+              [(ngModel)]="entity.interests"
+            />
+            <div class="invalid-feedback" *ngIf="submitted && f.interests.errors">
+              <p *ngIf="f.interests.errors.required">Required !</p>
             </div>
+          </div>
 
-
-            <!-- <div class="form-group">
-                <label for="parent-input">
-                    <span translate>parent</span>
-                </label>
-                <ng-select [items]="parents$ | async" bindLabel="name" bindValue="id">
-                </ng-select>
-
-                <div class="alert alert-danger" *ngIf="childForm.get('parent').errors && childForm.get('parent').touched">
-                    <p *ngIf="childForm.get('parent').errors.required">Required !</p>
-                </div>
-
-            </div> -->
-
-
-            <button [disabled]="childForm.invalid || childForm.pristine" type="submit" class="btn btn-primary">
-                <span translate>Submit</span>
-            </button>
+          <button type="submit" class="btn btn-primary"><span translate>Submit</span></button>
         </form>
+      </div>
     </div>
-</div>
+  </div>
+</form>

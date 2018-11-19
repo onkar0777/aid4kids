@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFirestore, 
-  AngularFirestoreCollection, 
-  AngularFirestoreDocument, 
+import { AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument,
   DocumentReference
 } from 'angularfire2/firestore';
 
@@ -34,7 +34,7 @@ export class FirestoreService {
   /// Get a Reference
   /// **************
 
-  col<T>(ref: CollectionPredicate<T>, queryFn?:any): AngularFirestoreCollection<T> {
+  col<T>(ref: CollectionPredicate<T>, queryFn?: any): AngularFirestoreCollection<T> {
     return typeof ref === 'string' ? this.afs.collection<T>(ref, queryFn) : ref
   }
 
@@ -60,7 +60,7 @@ export class FirestoreService {
   //     (action => action))
   // }
 
-  col$<T>(ref: CollectionPredicate<T>, queryFn?:any): Observable<T[]> {
+  col$<T>(ref: CollectionPredicate<T>, queryFn?: any): Observable<T[]> {
     return this.col(ref, queryFn).snapshotChanges().pipe(map(docs => {
       return docs.map(a => a.payload.doc.data()) as T[]
     }));
@@ -69,7 +69,7 @@ export class FirestoreService {
 
 
   /// with Ids
-  colWithIds$<T>(ref: CollectionPredicate<T>, queryFn?:any): Observable<any[]> {
+  colWithIds$<T>(ref: CollectionPredicate<T>, queryFn?: any): Observable<any[]> {
     return this.col(ref, queryFn).snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Object;
@@ -100,7 +100,7 @@ export class FirestoreService {
     })
   }
 
-  update<T>(ref: DocPredicate<T>, data: any):Promise<void> {
+  update<T>(ref: DocPredicate<T>, data: any): Promise<void> {
     return this.doc(ref).update({
       ...data,
       updatedAt: this.timestamp
@@ -112,7 +112,7 @@ export class FirestoreService {
     return this.doc(ref).delete()
   }
 
-  add<T>(ref: CollectionPredicate<T>, data:any):Promise<DocumentReference> {
+  add<T>(ref: CollectionPredicate<T>, data: any): Promise<DocumentReference> {
     const timestamp = this.timestamp
     return this.col(ref).add({
       ...data,
@@ -128,12 +128,21 @@ export class FirestoreService {
 
 
   /// If doc exists update, otherwise set
-  upsert<T>(ref: DocPredicate<T>, data: any) {
-    const doc = this.doc(ref).snapshotChanges().pipe(take(1)).toPromise()
+  upsert<T>(collName: string, id: string, data: any) {
+    const timestamp = this.timestamp
+    return this.afs.doc( `${collName}/${id}`).set(
+     { ...data,
+      updatedAt: timestamp,
+      createdAt: timestamp
+    },
+       { merge: true });
 
-    return doc.then((snap:any) => {
-      return snap.payload.exists ? this.update(ref, data) : this.set(ref, data)
-    })
+
+    // const doc = this.doc(ref).snapshotChanges().pipe(take(1)).toPromise()
+
+    // return doc.then((snap:any) => {
+    //   return snap.payload.exists ? this.update(ref, data) : this.set(ref, data)
+    // })
   }
 
 

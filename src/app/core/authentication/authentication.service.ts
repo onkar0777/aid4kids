@@ -53,7 +53,7 @@ export class AuthenticationService {
   localUser: firebase.User;
   //items: FirebaseListObservable<any[]>;
 
-  constructor(protected afAuth: AngularFireAuth, protected messages: FlashMessagesService) {
+  constructor(public afAuth: AngularFireAuth, protected messages: FlashMessagesService) {
     this.afAuth.authState.subscribe(user => {
       this.localUser = user;
     });

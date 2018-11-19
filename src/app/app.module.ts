@@ -23,6 +23,7 @@ import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messag
 import { FirestoreService } from '@app/base/firestore.service';
 import { PostModule } from '@app/post/post.module';
 import { QuoteModule } from '@app/quote/quote.module';
+import { UserService } from '@app/base/user.service';
 
 
 
@@ -54,7 +55,8 @@ import { QuoteModule } from '@app/quote/quote.module';
   declarations: [AppComponent],
   providers: [
     FlashMessagesService,
-    FirestoreService
+    FirestoreService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

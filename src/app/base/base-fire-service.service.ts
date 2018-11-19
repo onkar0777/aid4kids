@@ -24,9 +24,9 @@ export abstract class BaseFireService<T extends BaseEntity> {
   url = "";
 
   constructor(public afs: FirestoreService, protected messages: FlashMessagesService) {
-    // this.collection = afs.collection(this.getCollName(),
-    //    ref =>ref.orderBy('lastName','asc'));
-    //this.url   = this.getCollName();
+    // this.collection = this.afs.collection(this.getCollName(),
+    //    ref => ref.orderBy('lastName', 'asc'));
+    this.url   = this.getCollName();
   }
 
   abstract getCollName(): string;
@@ -46,6 +46,11 @@ export abstract class BaseFireService<T extends BaseEntity> {
   update(record: T): Promise<void> {
     console.log(record);
     return this.afs.update(this.getDocRef(record.id), record);
+  }
+
+  upsert(id: string, record: T): Promise<void> {
+    console.log(record);
+    return this.afs.upsert(this.getCollName(), id, record);
   }
 
   delete(record: T) {
