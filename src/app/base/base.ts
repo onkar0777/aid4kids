@@ -1,3 +1,4 @@
-export interface BaseEntity{
-    id:string
+export interface BaseEntity {
+    id: string
+    dateCreated: Date
 }
