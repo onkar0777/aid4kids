@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <parent-manage> </parent-manage>
+  <parent-add [entity]="entity" (formSubmitted)="onSubmit($event)"> </parent-add>
 
   <div *ngFor="let e of (entities$ | async)">
     <child-view [entity]="e" (parentClicked)="unsponsor($event)"></child-view>
