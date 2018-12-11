@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { BaseEntity } from './base';
 import { BaseService } from './base.service';
 import { BaseFireService } from '@app/base/base-fire-service.service';
+
 //import { DisplayMessage } from '../shared/models/display-message';
 
 
@@ -13,7 +14,7 @@ export abstract class BaseEditComponent<T extends BaseEntity> implements OnInit 
   entity: T
   errorMessage: string;
   id: any
-
+  //get f() { return this.getTheForm().controls; }
 
   public compareFn(e1: BaseEntity, e2: BaseEntity) {
     return e1 && e2 ? e1.id === e2.id : e1 === e2;
@@ -33,7 +34,7 @@ export abstract class BaseEditComponent<T extends BaseEntity> implements OnInit 
   //notification: DisplayMessage;
 
   //@Output() onNew = new EventEmitter<T>();
-  constructor(protected service: BaseFireService<T>,
+  constructor(protected service: BaseFireService <T>,
     protected route: ActivatedRoute,
     protected router: Router,
     protected url: string) {
@@ -46,8 +47,8 @@ export abstract class BaseEditComponent<T extends BaseEntity> implements OnInit 
     console.log(this.id)
     if (this.id) {
       this.service.getById(this.id).subscribe(
-        u => this.entity = u,
-        error => { console.log(error); this.errorMessage = <any>error });
+        (u: any) => this.entity = u,
+       ( error: any) => { console.log(error); this.errorMessage = <any>error });
     }
   }
 
@@ -56,7 +57,7 @@ export abstract class BaseEditComponent<T extends BaseEntity> implements OnInit 
   }
 
   onSubmit(entity: T) {
-   
+
     const id = this.route.snapshot.params['id']
     console.log(entity)
 

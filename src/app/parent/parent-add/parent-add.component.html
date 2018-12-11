@@ -6,7 +6,7 @@
     <div class="card-body">
       <form [formGroup]="parentForm" (submit)="submit()" novalidate>
         <div class="form-group">
-          <label for="firstName-input"> * <span translate>Firstname</span></label> string
+          <label for="firstName-input"> * <span translate>Firstname</span></label>
           <input
             type="text"
             formControlName="firstName"
@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-group">
-          <label for="lastName-input"> * <span translate>Lastname</span></label> string
+          <label for="lastName-input"> * <span translate>Lastname</span></label>
           <input
             type="text"
             formControlName="lastName"
@@ -77,32 +77,23 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="image-input"> <span translate>Image</span></label>
           <input
-            type="file"
-            accept=".png,.jpg"
-            (change)="upload($event)"
+            type="text"
             formControlName="image"
             id="image-input"
             class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.image.errors }"
             [(ngModel)]="entity.image"
           />
-          <progress
-            max="100"
-            *ngIf="(uploadProgress | async); let uploadProgressPercentage"
-            [value]="uploadProgressPercentage"
-            ><span>%</span></progress
-          >
-
           <div class="invalid-feedback" *ngIf="submitted && f.image.errors">
             <p *ngIf="f.image.errors.required">Required !</p>
           </div>
-        </div>
+        </div> -->
 
         <div class="form-group">
-          <label for="email-input"> * <span translate>Email</span></label> string
+          <label for="email-input"> * <span translate>Email</span></label>
           <input
             type="text"
             formControlName="email"
@@ -117,7 +108,7 @@
         </div>
 
         <div class="form-group">
-          <label for="city-input"> * <span translate>City</span></label> string
+          <label for="city-input"> * <span translate>City</span></label>
           <input
             type="text"
             formControlName="city"
@@ -132,7 +123,7 @@
         </div>
 
         <div class="form-group">
-          <label for="country-input"> * <span translate>Country</span></label> string
+          <label for="country-input"> * <span translate>Country</span></label>
           <input
             type="text"
             formControlName="country"
@@ -147,7 +138,7 @@
         </div>
 
         <div class="form-group">
-          <label for="bankInfo-input"> * <span translate>Bankinfo</span></label> string
+          <label for="bankInfo-input"> * <span translate>Bankinfo</span></label>
           <input
             type="text"
             formControlName="bankInfo"

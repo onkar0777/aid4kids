@@ -43,10 +43,10 @@ export class RegisterComponent implements OnInit {
     this.authenticationService
       .register(email, this.loginForm.get("password").value)
       .then((x: any) => {
-        //these lines are needed only registering admin users
-        // this.authenticationService.afAuth.user.subscribe(
-        //   (x: any) => console.log("user ", x.uid) || this.userService.upsert(x.uid, new User({ email: email }))
-        // );
+        //these lines are needed for linking  users to their profiles
+        this.authenticationService.afAuth.user.subscribe(
+          (x: any) => console.log("user ", x.uid) || this.userService.upsert(x.uid, new User({ email: email }))
+        );
         //this.authenticationService.localUser = x.user
         this.fms.show("successfully registered", { cssClass: "alert alert-success" });
         this.router.navigate(["/"], { replaceUrl: true });

@@ -24,6 +24,7 @@ import { FirestoreService } from '@app/base/firestore.service';
 import { PostModule } from '@app/post/post.module';
 import { QuoteModule } from '@app/quote/quote.module';
 import { UserService } from '@app/base/user.service';
+import { ParentModule } from '@app/parent/parent.module';
 
 
 
@@ -43,12 +44,13 @@ import { UserService } from '@app/base/user.service';
     ChildModule,
     PostModule,
     QuoteModule,
-    //ParentModule,
+    ParentModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+
     FlashMessagesModule.forRoot()
 
   ],

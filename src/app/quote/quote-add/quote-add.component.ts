@@ -24,15 +24,15 @@ export class QuoteAddComponent extends BaseFormComponent<Quote> implements OnIni
         super();
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.createForm();
     }
 
     private createForm(): void {
         this.quoteForm = this.fb.group({
-            tags: ['', [Validators.required,]],
-            text: ['', [Validators.required,]],
-            explanation: ['', [Validators.required,]],
+            tags: ['', [Validators.required, ]],
+            text: ['', [Validators.required, ]],
+            explanation: ['', [Validators.required, ]],
             page: ['', [Validators.max(1430),
             ]],
 
@@ -42,10 +42,10 @@ export class QuoteAddComponent extends BaseFormComponent<Quote> implements OnIni
     getForm() { return this.quoteForm };
 
     submit() {
-        super.onSubmit();
+        super.submit();
     }
 
-    form2Entity(){
+    form2Entity() {
         super.form2Entity()
         this.entity.tags = this.f.tags.value.split(',')
     }
