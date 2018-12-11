@@ -9,7 +9,7 @@ const routes: Routes = [
   Route.withShell([
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent, data: { title: extract('Home') } },
-    { path: 'profile', component: MyprofileComponent, data: { title: extract('Home') } }
+    { path: 'profile/:id', component: MyprofileComponent, data: { title: extract('Home') } }
   ])
 ];
 

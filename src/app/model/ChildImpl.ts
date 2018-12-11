@@ -12,15 +12,18 @@ export class ChildImpl implements Child {
     firstName: string
     lastName: string
     gender: Gender
+
     dob: Date
     image: string
     imageUrl: Observable<any>
     description: string
     interests: string
     parent: string
+
+    dateCreated: Date
     //ChildImpl(){}
 
-    constructor (ifc:Child){
+    constructor (ifc: Child) {
         _.assign(this, ifc)
     }
 

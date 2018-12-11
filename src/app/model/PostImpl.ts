@@ -12,6 +12,7 @@ export class PostImpl implements Post {
     message: string;
     images?: [string]; // url of the images
     children: [string];
+    dateCreated: Date
 
     constructor (ifc: Post) {
         _.assign(this, ifc);

@@ -12,7 +12,7 @@ export interface Quote extends BaseEntity {
     page: number
 }
 
-let chance = new Chance();
+const chance = new Chance();
 
 export const quoteFactory = Factory.makeFactory<Quote>({
     id: Factory.each(i => '' + i),
@@ -20,6 +20,7 @@ export const quoteFactory = Factory.makeFactory<Quote>({
     text: chance.paragraph(),
     explanation: chance.paragraph(),
     page: chance.integer({ min: 0, max: 20 }),
+    dateCreated: null
 
 });
 

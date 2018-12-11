@@ -10,6 +10,7 @@ import { QuoteService } from './quote.service';
 import { MyCompsModule } from '@app/base/mycomps';
 import { ChildModule } from '@app/child/child.module';
 import { MyprofileComponent } from '@app/home/myprofile/myprofile.component';
+import { ParentModule } from '@app/parent/parent.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MyprofileComponent } from '@app/home/myprofile/myprofile.component';
     SharedModule,
     HomeRoutingModule,
     MyCompsModule,
-    ChildModule
+    ChildModule,
+    ParentModule
   ],
   declarations: [
     HomeComponent,

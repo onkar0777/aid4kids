@@ -1,4 +1,6 @@
 <div class="container-fluid">
+  <parent-manage> </parent-manage>
+
   <div *ngFor="let e of (entities$ | async)">
     <child-view [entity]="e" (parentClicked)="unsponsor($event)"></child-view>
   </div>

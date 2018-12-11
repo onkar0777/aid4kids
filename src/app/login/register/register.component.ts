@@ -6,6 +6,8 @@ import { FlashMessagesService } from "angular2-flash-messages";
 import { AuthenticationService, I18nService } from "@app/core";
 import { UserService } from "@app/base/user.service";
 import { User } from "@app/core/roles";
+import { ParentService } from "@app/parent/parent.service";
+import { Parent } from "@app/parent/parent";
 
 @Component({
   selector: "app-register",
@@ -32,6 +34,7 @@ export class RegisterComponent implements OnInit {
     private i18nService: I18nService,
     private authenticationService: AuthenticationService,
     private userService: UserService,
+    private parentService: ParentService,
     private fms: FlashMessagesService
   ) {
     this.createForm();
@@ -45,7 +48,8 @@ export class RegisterComponent implements OnInit {
       .then((x: any) => {
         //these lines are needed for linking  users to their profiles
         this.authenticationService.afAuth.user.subscribe(
-          (x: any) => console.log("user ", x.uid) || this.userService.upsert(x.uid, new User({ email: email }))
+          (x: any) => console.log("user ", x.uid) ||
+          this.parentService.upsert(x.uid,  <Parent>({ email: email }))
         );
         //this.authenticationService.localUser = x.user
         this.fms.show("successfully registered", { cssClass: "alert alert-success" });

@@ -32,6 +32,7 @@ import { ParentManageComponent } from '@app/parent/parent-manage/parent-manage.c
   exports: [
     ParentListComponent,
     ParentAddComponent,
+    ParentManageComponent
   ],
   providers: [ParentService]
 })
