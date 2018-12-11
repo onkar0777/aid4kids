@@ -24,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let e of entities">
+        <tr *ngFor="let e of entities | async">
           <!-- <td><a [routerLink]="['../travel-quote', travelQuote.id ]"> entity.id </a></td> -->
           <td>{{ e.firstName }}</td>
           <td>{{ e.lastName }}</td>

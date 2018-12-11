@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 
 export abstract class BaseListComponent<T extends BaseEntity> implements OnInit {
 
-  $entities: Observable< T[]>;
+  entities: Observable< T[]>;
   errorMessage: string;
   response_status: number;
   is_insert = false;
@@ -25,7 +25,7 @@ export abstract class BaseListComponent<T extends BaseEntity> implements OnInit 
 
 
   ngOnInit() {
-    this.$entities = this.service.getRecords()
+    this.entities = this.service.getRecords()
   }
 
   delete(record: T) {

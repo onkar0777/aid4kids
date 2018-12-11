@@ -35,6 +35,7 @@ email : chance.last(),
 city : chance.last(),
 country : chance.last(),
 bankInfo : chance.last(),
+dateCreated: null
 
 });
 

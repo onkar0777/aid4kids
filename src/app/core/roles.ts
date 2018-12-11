@@ -9,6 +9,7 @@ export interface Roles {
   export class User implements BaseEntity {
     id: string
     email:    string;
+    dateCreated: Date
     //photoURL: string;
     roles:    Roles;
 
