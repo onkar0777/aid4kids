@@ -9,6 +9,7 @@ import { ChildImpl } from '@app/model/ChildImpl';
 
 import * as _ from 'lodash';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { AuthenticationService } from '@app/core';
 
 @Component({
 selector: 'child-view',
@@ -27,7 +28,8 @@ export class ChildViewComponent extends BaseEditComponent<Child> implements OnIn
         protected childService: ChildService,
         protected route: ActivatedRoute,
         protected router: Router,
-        private afStorage: AngularFireStorage
+        private afStorage: AngularFireStorage,
+        public authenticationService: AuthenticationService
     ) {
         super(childService, route, router, 'childs')
     }
