@@ -1,5 +1,7 @@
-<div class="container-fluid">
-  <div *ngFor="let e of (entities$ | async)">
-    <child-view [entity]="e" (parentClicked)="sponsor($event)"></child-view>
+<div class="container">
+  <div class="row align-items-center">
+      <div class="align-self-center p-3 col-lg-4 col-md-6 col-12" *ngFor="let e of entities$ | async">
+        <child-view [entity]="e" (parentClicked)="sponsor($event)"></child-view>
+      </div>
   </div>
 </div>

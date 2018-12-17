@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   menuHidden = true;
 
   constructor(private router: Router,
-              private authenticationService: AuthenticationService,
+              public authenticationService: AuthenticationService,
               private i18nService: I18nService) { }
 
   ngOnInit() { }

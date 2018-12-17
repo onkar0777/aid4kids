@@ -8,8 +8,9 @@
       <p class="card-text">Likes - {{entity.interests}}</p>
       <p class="card-text">{{entity.description}}</p>
       <a href="#" *ngIf= "entity.parent" class="card-link">{{entity.parent}}</a>
-      <button class="btn-primary" (click)="clicked('sponsor')" [hidden]="entity.parent" >Be my parent !</button>
-      <button class="btn-primary" (click)="clicked('Unsponsor')" 
-         [hidden]="!entity.parent" >Unsponsor</button>
+      <button *ngIf="!authenticationService.isAuthenticated()" class="btn-primary" routerLink="/login" [hidden]="entity.parent">Login to Be my parent !</button>
+      <button *ngIf="authenticationService.isAuthenticated()" class="btn-primary" (click)="clicked('sponsor')" [hidden]="entity.parent" >Be my parent !</button>
+      <button *ngIf="authenticationService.isAuthenticated()" class="btn-primary" (click)="clicked('Unsponsor')" 
+         [hidden]="!entity.parent">Unsponsor</button>
     </div>
   </div>

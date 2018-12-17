@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   sponsor(child: Child) {
-    console.log("child " ,child)
+    console.log("child " , child)
     this.childService.sponsor(child)
   }
 

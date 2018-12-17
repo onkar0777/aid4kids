@@ -22,11 +22,13 @@ export class LoginComponent implements OnInit {
   isLoading = false;
   showRegister = false;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     private i18nService: I18nService,
     private authenticationService: AuthenticationService,
-  private fms: FlashMessagesService) {
+    private fms: FlashMessagesService
+  ) {
     this.createForm();
   }
 

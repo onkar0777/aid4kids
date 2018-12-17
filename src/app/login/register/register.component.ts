@@ -8,6 +8,7 @@ import { UserService } from "@app/base/user.service";
 import { User } from "@app/core/roles";
 import { ParentService } from "@app/parent/parent.service";
 import { Parent } from "@app/parent/parent";
+import { LoginComponent } from "@app/login/login.component";
 
 @Component({
   selector: "app-register",
@@ -35,9 +36,22 @@ export class RegisterComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private parentService: ParentService,
-    private fms: FlashMessagesService
+    private fms: FlashMessagesService,
+    public loginComp: LoginComponent
   ) {
     this.createForm();
+  }
+
+  setLanguage(language: string) {
+    this.i18nService.language = language;
+  }
+
+  get currentLanguage(): string {
+    return this.i18nService.language;
+  }
+
+  get languages(): string[] {
+    return this.i18nService.supportedLanguages;
   }
 
   login() {
