@@ -14,7 +14,7 @@ import { BaseFormComponent } from "@app/base/base-from.component";
 //import {Parent} from "@app/parent/parent";
 
 @Component({
-  selector: "app-child-add",
+  selector: "child-add",
   templateUrl: "./child-add.component.html",
   styleUrls: ["./child-add.component.css"]
 })

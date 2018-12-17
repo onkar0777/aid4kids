@@ -20,7 +20,7 @@ export class MyprofileComponent implements OnInit {
     private authenticationService: AuthenticationService) {
     parentService.getById(
       this.authenticationService.localUser.uid).subscribe(
-        x => this.entity = x
+        (x: any) => this.entity = x
       );
   }
 

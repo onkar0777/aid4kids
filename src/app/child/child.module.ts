@@ -10,6 +10,7 @@ import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
 import { ChildViewComponent } from '@app/child/child-view/child-view.component';
+import { ChildManageComponent } from '@app/child/child-manage/child-manage.component';
 
 //import { JsonSchemaFormModule }               from 'angular2-json-schema-form';
 @NgModule({
@@ -25,6 +26,7 @@ import { ChildViewComponent } from '@app/child/child-view/child-view.component';
   declarations: [
     ChildListComponent,
     ChildAddComponent,
+    ChildManageComponent,
     ChildViewComponent],
   exports: [
     ChildListComponent,
