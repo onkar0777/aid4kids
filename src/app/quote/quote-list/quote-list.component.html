@@ -17,12 +17,12 @@
     </quote-view>
 
 
-    <div *ngIf=" $entities && cards">
+    <div *ngIf=" entities && cards">
         <!-- <quote-view [entity]="e" *ngFor="let e of $entities | async" (editClicked)="showEdit($event)" (deleteClicked)="delete($event)">
         </quote-view> -->
     </div>
 
-    <div *ngIf="$entities && !cards">
+    <div *ngIf="entities && !cards">
 
         <table class="table table-striped  dt-responsive nowrap">
             <thead>

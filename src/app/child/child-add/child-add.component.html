@@ -1,12 +1,12 @@
 <div class="container-fluid bg-light py-3">
   <div class="card">
     <div class="card-header">
-      <h4 class="mb-0">{{ !entity.id ? "Add" : "Edit" }}Parent</h4>
+      <h4 class="mb-0">{{ !entity.id ? "Add" : "Edit" }}Child</h4>
     </div>
     <div class="card-body">
-      <form [formGroup]="parentForm" (submit)="submit()" novalidate>
+      <form [formGroup]="childForm" (submit)="submit()" novalidate>
         <div class="form-group">
-          <label for="firstName-input"> * <span translate>Firstname</span></label> string
+          <label for="firstName-input"> * <span translate>Firstname</span></label>
           <input
             type="text"
             formControlName="firstName"
@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-group">
-          <label for="lastName-input"> * <span translate>Lastname</span></label> string
+          <label for="lastName-input"> * <span translate>Lastname</span></label>
           <input
             type="text"
             formControlName="lastName"
@@ -102,64 +102,43 @@
         </div>
 
         <div class="form-group">
-          <label for="email-input"> * <span translate>Email</span></label> string
-          <input
-            type="text"
-            formControlName="email"
-            id="email-input"
+          <label for="description-input"> <span translate>Description</span></label>
+          <textarea
+            formControlName="description"
+            id="description-input"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-            [(ngModel)]="entity.email"
-          />
-          <div class="invalid-feedback" *ngIf="submitted && f.email.errors">
-            <p *ngIf="f.email.errors.required">Required !</p>
+            [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+            [(ngModel)]="entity.description"
+            rows="8"
+          ></textarea>
+          <div class="invalid-feedback" *ngIf="submitted && f.description.errors">
+            <p *ngIf="f.description.errors.required">Required !</p>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="city-input"> * <span translate>City</span></label> string
+          <label for="interests-input"> <span translate>Interests</span></label>
           <input
             type="text"
-            formControlName="city"
-            id="city-input"
+            formControlName="interests"
+            id="interests-input"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
-            [(ngModel)]="entity.city"
+            [ngClass]="{ 'is-invalid': submitted && f.interests.errors }"
+            [(ngModel)]="entity.interests"
           />
-          <div class="invalid-feedback" *ngIf="submitted && f.city.errors">
-            <p *ngIf="f.city.errors.required">Required !</p>
+          <div class="invalid-feedback" *ngIf="submitted && f.interests.errors">
+            <p *ngIf="f.interests.errors.required">Required !</p>
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="country-input"> * <span translate>Country</span></label> string
-          <input
-            type="text"
-            formControlName="country"
-            id="country-input"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.country.errors }"
-            [(ngModel)]="entity.country"
-          />
-          <div class="invalid-feedback" *ngIf="submitted && f.country.errors">
-            <p *ngIf="f.country.errors.required">Required !</p>
-          </div>
-        </div>
+        <!-- <div class="form-group">
+          <label for="parent-input"> <span translate>Parent</span></label>
+          <ng-select [items]="parents$ | async" bindLabel="name" bindValue="id"> </ng-select>
 
-        <div class="form-group">
-          <label for="bankInfo-input"> * <span translate>Bankinfo</span></label> string
-          <input
-            type="text"
-            formControlName="bankInfo"
-            id="bankInfo-input"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.bankInfo.errors }"
-            [(ngModel)]="entity.bankInfo"
-          />
-          <div class="invalid-feedback" *ngIf="submitted && f.bankInfo.errors">
-            <p *ngIf="f.bankInfo.errors.required">Required !</p>
+          <div class="invalid-feedback" *ngIf="submitted && f.parent.errors">
+            <p *ngIf="f.parent.errors.required">Required !</p>
           </div>
-        </div>
+        </div> -->
 
         <button type="submit" class="btn btn-primary"><span translate>Submit</span></button>
       </form>
