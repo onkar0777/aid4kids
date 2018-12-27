@@ -19,13 +19,13 @@ export class MyprofileComponent implements OnInit {
     private parentService: ParentService,
     private authenticationService: AuthenticationService) {
     parentService.getById(
-      this.authenticationService.localUser.uid).subscribe(
+      this.authenticationService.localUser.id).subscribe(
         x => this.entity = x
       );
   }
 
   onSubmit(e: any) {
-    this.parentService.upsert(this.authenticationService.localUser.uid, e);
+    this.parentService.upsert(this.authenticationService.localUser.id, e);
   }
 
   ngOnInit() {

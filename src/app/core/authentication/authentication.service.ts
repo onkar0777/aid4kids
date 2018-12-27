@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { map } from 'rxjs/operators';
+import { User } from '@app/model/user';
 
 export interface Credentials {
   // Customize received credentials here
@@ -50,12 +51,12 @@ export class AuthenticationService {
   // }
 
   user: Observable<firebase.User>;
-  localUser: firebase.User;
+  localUser: User;
   //items: FirebaseListObservable<any[]>;
 
   constructor(public afAuth: AngularFireAuth, protected messages: FlashMessagesService) {
     this.afAuth.authState.subscribe(user => {
-      this.localUser = user;
+      this.localUser = new User(user);
     });
     console.log(this.user);
     console.log(this.localUser);

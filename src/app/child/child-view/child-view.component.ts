@@ -14,7 +14,7 @@ import { AuthenticationService } from '@app/core';
 @Component({
 selector: 'child-view',
 templateUrl: './child-view.component.html',
-styleUrls: ['./child-edit.component.css']
+styleUrls: ['./child-view.component.scss']
 })
 export class ChildViewComponent extends BaseEditComponent<Child> implements OnInit {
     @Input() entity: ChildImpl;

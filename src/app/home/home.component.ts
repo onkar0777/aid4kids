@@ -5,6 +5,7 @@ import { QuoteService } from './quote.service';
 import { ChildService } from '@app/child/child.service';
 import { Observable } from 'rxjs';
 import { Child } from '@app/child/child';
+import { AuthenticationService } from '@app/core';
 
 @Component({
   selector: 'app-home',
@@ -23,9 +24,10 @@ export class HomeComponent implements OnInit {
     ]
   }
 
-  constructor(private childService: ChildService) {
-
-  }
+  constructor(
+    private childService: ChildService,
+    public authenticationService: AuthenticationService
+  ) {}
 
   sponsor(child: Child) {
     console.log("child " , child)

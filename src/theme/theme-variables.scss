@@ -49,6 +49,34 @@ $theme-colors: (
   dark: $gray-800
 );
 
+$font-primary: 'Overpass',Arial, sans-serif;
+$font-secondary: 'Dosis',Arial, sans-serif;
+
+$white: #fff;
+$black: #000;
+$darken: #4a5562;
+
+$primary: #f86f2d;
+$secondary: #fa8f3d;
+$tertiary: #faaa3a;
+$quarternary: #7cbd1e;
+
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin transition($transition) {
+    -moz-transition:    all $transition ease;
+    -o-transition:      all $transition ease;
+    -webkit-transition: all $transition ease;
+    -ms-transition: 		all $transition ease;
+    transition:         all $transition ease;
+}
+
 // Use Bootstrap defaults for other variables, imported here so we can access all app variables in one place when used
 // in components.
 @import "~bootstrap/scss/_functions";
