@@ -3,7 +3,10 @@ import { Observable, of } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { map } from 'rxjs/operators';
-import { User } from '@app/model/user';
+import { ParentService } from '@app/parent/parent.service';
+import { Parent } from '@app/parent/parent';
+
+import { FirestoreService } from '@app/base/firestore.service';
 
 export interface Credentials {
   // Customize received credentials here
@@ -27,6 +30,7 @@ const credentialsKey = 'credentials';
 export class AuthenticationService {
 
   private _credentials: Credentials | null;
+  private userProfile: Parent
 
   // constructor() {
   //   const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
@@ -50,15 +54,17 @@ export class AuthenticationService {
   //   return of(data);
   // }
 
-  user: Observable<firebase.User>;
-  localUser: User;
+  //user: Observable<firebase.User>;
+  localUser: firebase.User;
   //items: FirebaseListObservable<any[]>;
 
-  constructor(public afAuth: AngularFireAuth, protected messages: FlashMessagesService) {
+  constructor(public afAuth: AngularFireAuth,
+    protected messages: FlashMessagesService,
+    public afs: FirestoreService) {
     this.afAuth.authState.subscribe(user => {
-      this.localUser = new User(user);
+      this.localUser = user;
     });
-    console.log(this.user);
+
     console.log(this.localUser);
   }
 
@@ -66,6 +72,12 @@ export class AuthenticationService {
      return this.afAuth.auth
       .signInAndRetrieveDataWithEmailAndPassword(context.username,
         context.password)
+        .then(user =>
+          this.afs.doc$("parents/" + user.user.uid).subscribe(
+              (x: any) => this.userProfile = x
+            )
+          )  ;
+
   }
 
   public get isAuthenticated$(): Observable<boolean> {
@@ -78,7 +90,11 @@ export class AuthenticationService {
       .createUserWithEmailAndPassword(
         email,
         password,
-      );
+      ).then(user =>
+        this.afs.doc$("parents/" + user.user.uid).subscribe(
+            (x: any) => this.userProfile = x
+          )
+        )  ;
   }
 
   /**

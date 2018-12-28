@@ -19,6 +19,8 @@ export class RegisterComponent implements OnInit {
   loginForm: FormGroup;
   isLoading = false;
 
+  showRegister = false
+
   ngOnInit() {}
 
   private createForm() {

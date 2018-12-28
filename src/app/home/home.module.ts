@@ -11,6 +11,7 @@ import { MyCompsModule } from '@app/base/mycomps';
 import { ChildModule } from '@app/child/child.module';
 import { MyprofileComponent } from '@app/home/myprofile/myprofile.component';
 import { ParentModule } from '@app/parent/parent.module';
+import { MykidsComponent } from './mykids/mykids.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ParentModule } from '@app/parent/parent.module';
   ],
   declarations: [
     HomeComponent,
-    MyprofileComponent
+    MyprofileComponent,
+    MykidsComponent
   ],
   providers: [
     QuoteService
