@@ -55,9 +55,15 @@ export class ChildService extends BaseFireService<Child> {
       this.authService.localUser.email))
   }
 
-  getUnsponsored() {
-    return this.afs.colWithIds$(this.getCollName(),
-      (ref: any) => ref.where('parent', '==', null))
+  getUnsponsored(limit: number, doc: any) {
+    console.log(doc);
+    if (!doc) {
+      return this.afs.colWithIds$(this.getCollName(),
+      (ref: any) => ref.where('parent', '==', null).limit(limit))
+    } else {
+      return this.afs.colWithIds$(this.getCollName(),
+      (ref: any) => ref.where('parent', '==', null).orderBy('firstName').startAfter(doc).limit(limit))
+    }
   }
 
 

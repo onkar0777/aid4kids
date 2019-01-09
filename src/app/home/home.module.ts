@@ -12,6 +12,7 @@ import { ChildModule } from '@app/child/child.module';
 import { MyprofileComponent } from '@app/home/myprofile/myprofile.component';
 import { ParentModule } from '@app/parent/parent.module';
 import { MykidsComponent } from './mykids/mykids.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MykidsComponent } from './mykids/mykids.component';
     HomeRoutingModule,
     MyCompsModule,
     ChildModule,
-    ParentModule
+    ParentModule,
+    NgbModule
   ],
   declarations: [
     HomeComponent,

@@ -13,9 +13,11 @@ import { AuthenticationService } from '@app/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  entities$: Observable<Child[]>
+  entities: any[] = [];
   quote: string;
   isLoading: boolean;
+  showLoadMore = false;
+  limit = 2;
   client = {
     firstName: 'dd',
     persons: [
@@ -35,12 +37,29 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.entities$ = this.childService.getUnsponsored()
-    // this.isLoading = true;
-    // this.quoteService.getRandomQuote({ category: 'dev' })
-    //   .pipe(finalize(() => { this.isLoading = false; }))
-    //   .subscribe((quote: string) => { this.quote = quote; });
+    this.childService.getUnsponsored(2, null).subscribe(data => {
+      this.entities = data;
+      if (this.entities.length === this.limit) {
+        this.showLoadMore = true;
+      } else {
+        this.showLoadMore = false;
+      }
+    })
   }
+
+  public loadMore(): void {
+    console.log("Loading More Data - ");
+    this.limit += 2;
+    this.childService.getUnsponsored(this.limit, null).subscribe(data => {
+      console.log(data);
+      this.entities = data;
+      if (this.entities.length === this.limit) {
+        this.showLoadMore = true;
+      } else {
+        this.showLoadMore = false;
+      }
+    })
+}
 
 }
 
