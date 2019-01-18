@@ -18,6 +18,7 @@ import { LoginComponent } from "@app/login/login.component";
 export class RegisterComponent implements OnInit {
   loginForm: FormGroup;
   isLoading = false;
+  registerError = false;
 
   showRegister = false
 
@@ -58,6 +59,7 @@ export class RegisterComponent implements OnInit {
 
   login() {
     this.isLoading = true;
+    this.registerError = false;
     const email = this.loginForm.get("username").value;
     this.authenticationService
       .register(email, this.loginForm.get("password").value)
@@ -74,6 +76,7 @@ export class RegisterComponent implements OnInit {
       })
       .catch((e: any) => {
         console.log(`register error: ${e}`);
+        this.registerError = true;
         this.isLoading = false;
       });
   }

@@ -70,7 +70,7 @@
             </button>
           </form>
           <p class="text-center text-muted pt-3">or if you are a first time user</p>
-          <button class="btn btn-secondary w-100" [hidden]="showRegister" [disabled]="isLoading" (click)="showRegister = true">
+          <button class="btn btn-secondary w-100" [hidden]="showRegister" [disabled]="isLoading" (click)="showRegister = true; error = false">
             <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i> <span translate>Register</span>
           </button>
         </div>

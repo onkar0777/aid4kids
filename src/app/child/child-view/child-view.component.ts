@@ -10,6 +10,7 @@ import { ChildImpl } from '@app/model/ChildImpl';
 import * as _ from 'lodash';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { AuthenticationService } from '@app/core';
+import { Observable } from 'rxjs';
 
 @Component({
 selector: 'child-view',
@@ -20,7 +21,7 @@ export class ChildViewComponent extends BaseEditComponent<Child> implements OnIn
     @Input() entity: ChildImpl;
     original: Child;
     errorMessage: string;
-    img: any
+    img: Observable<any>
 
     @Output() parentClicked: EventEmitter<Child> = new EventEmitter()
 

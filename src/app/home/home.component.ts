@@ -17,7 +17,9 @@ export class HomeComponent implements OnInit {
   quote: string;
   isLoading: boolean;
   showLoadMore = false;
-  limit = 2;
+  limit = 10;
+  offset = 0;
+  offsetKey: any;
   client = {
     firstName: 'dd',
     persons: [
@@ -37,7 +39,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.childService.getUnsponsored(2, null).subscribe(data => {
+    this.childService.getUnsponsored(this.limit, null).subscribe(data => {
       this.entities = data;
       if (this.entities.length === this.limit) {
         this.showLoadMore = true;
@@ -49,11 +51,13 @@ export class HomeComponent implements OnInit {
 
   public loadMore(): void {
     console.log("Loading More Data - ");
-    this.limit += 2;
-    this.childService.getUnsponsored(this.limit, null).subscribe(data => {
+    this.offset += this.limit;
+    this.offsetKey = this.entities[this.entities.length - 1];
+    console.log(this.entities, this.offsetKey);
+    this.childService.getUnsponsored(this.limit, this.offsetKey.id + 1).subscribe(data => {
       console.log(data);
-      this.entities = data;
-      if (this.entities.length === this.limit) {
+      this.entities = this.entities.concat(data);
+      if (this.entities.length === this.limit + this.offset) {
         this.showLoadMore = true;
       } else {
         this.showLoadMore = false;

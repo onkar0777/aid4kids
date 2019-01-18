@@ -17,7 +17,7 @@ const log = new Logger('Login');
 export class LoginComponent implements OnInit {
 
   version: string = environment.version;
-  error: string;
+  error = false;
   loginForm: FormGroup;
   isLoading = false;
   showRegister = false;
@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   login() {
+    this.error = false;
     this.isLoading = true;
     this.authenticationService
       .login(this.loginForm.value)
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
       }
       ).catch(e => {
         log.debug(`Login error: ${e}`);
+        this.error = true;
         this.isLoading = false;
       });
 
